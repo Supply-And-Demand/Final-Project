@@ -1,39 +1,46 @@
-Enemy e= new Enemy(750,550);
-void setup(){
-  size(800,600);
-
+Enemy e= new Enemy(random(350, 750), 550);
+void setup() {
+  size(800, 600);
 }
 
-void draw(){
-background(0);
-  
+void draw() {
+  background(0);
+
   e.display();
   e.move();
-  
+  e.attack();
 }
-
-
-
-
-
 
 
 ///////////////////
 class Enemy {
-  PVector loc, vel;
+  PVector locEnemy, locBullet, velEnemy, velBullet;
   float d;
-  
-  Enemy(float x, float y){
-   loc= new PVector (x,y);
-  vel= new PVector(-1,0);
 
-  d=50;
+  Enemy(float x, float y) {
+    locEnemy= new PVector (x, y);
+    velEnemy= new PVector(-1, 0);
+    locBullet= new PVector (x-20,y);
+    velBullet= new PVector(-3,0);
+    
+    d=50;
   }
-  
-  void display(){
-    ellipse(loc.x,loc.y,d,d);
+
+  void display() {
+    ellipse(locEnemy.x, locEnemy.y, d, d);
   }
-  void move(){
-  loc.add(vel); 
+  void move() {
+    locEnemy.add(velEnemy);
   }
+  void attack() {
+    ellipse(locBullet.x, locBullet.y, d-40, d-40);
+    locBullet.add(velBullet);
+  }
+//
+//  void checkForCharacter(Chracterclass c) {
+//    if (loc.dist(c.loc)<d/2+c.d/2) {
+//      e.attack();
+//    }
+//  }
 }
+
