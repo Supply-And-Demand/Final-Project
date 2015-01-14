@@ -4,7 +4,7 @@ class character {
   //        Initialized and Defined Variables         //
   //                                                  //
   //////////////////////////////////////////////////////
-  PVector loc;
+  PVector loc, vel, acc;
   float sz;
   character() {
     loc=new PVector(width*.1, height*.9); 
@@ -19,7 +19,7 @@ class character {
   void move() {
     if (keyPressed) {
 
-//      if (key==CODED) {
+
 
         if (key=='d') {
           loc.x+=5;
@@ -38,5 +38,5 @@ class character {
       }
     }
   }
-//}
+
 
