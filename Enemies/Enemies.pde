@@ -17,7 +17,9 @@ void draw() {
 class Enemy {
   PVector locEnemy, locBullet, velEnemy, velBullet;
   float d;
-  PImage bullet;
+  PImage bullet; 
+//  enemy1, enemy2, enemy3,enemy4;
+PImage [] enemy= new PImage[4]
 
 
   Enemy(float x, float y) {
@@ -26,11 +28,17 @@ class Enemy {
     locBullet= new PVector (x-20, y);
     velBullet= new PVector(-3, 0);
     bullet= loadImage("bullet.png");
+ 
+//     enemy1= loadImage("");
+//     enemy2= loadImage(""); 
+//     enemy3= loadImage("");
+//      enemy4= loadImage("");
     d=50;
   }
 
   void display() {
     ellipse(locEnemy.x, locEnemy.y, d, d);
+      for (int i=0; i<images.length;i++)
   }
   void move() {
     locEnemy.add(velEnemy);
