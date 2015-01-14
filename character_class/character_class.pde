@@ -8,6 +8,8 @@ class character {
   float sz;
   character() {
     loc=new PVector(width*.1, height*.9); 
+    vel=new PVector(5,5);
+    acc=new PVector(0,1);
     sz= 20;
   }
 
