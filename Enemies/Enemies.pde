@@ -16,13 +16,14 @@ void draw() {
 class Enemy {
   PVector locEnemy, locBullet, velEnemy, velBullet;
   float d;
+  PImage bullet;
 
   Enemy(float x, float y) {
     locEnemy= new PVector (x, y);
     velEnemy= new PVector(-1, 0);
     locBullet= new PVector (x-20,y);
     velBullet= new PVector(-3,0);
-    
+      bullet= loadImage("FParticles.png");
     d=50;
   }
 
@@ -33,7 +34,8 @@ class Enemy {
     locEnemy.add(velEnemy);
   }
   void attack() {
-    ellipse(locBullet.x, locBullet.y, d-40, d-40);
+     image(bullet,locBullet.x,locBullet.y); 
+//    ellipse(locBullet.x, locBullet.y, d-40, d-40);
     locBullet.add(velBullet);
   }
 //
