@@ -1,10 +1,11 @@
-Enemy e= new Enemy(random(350, 750), 550);
+Enemy e;
 void setup() {
   size(800, 600);
+  e= new Enemy(random(350, 750), 550);
 }
 
 void draw() {
-  background(0);
+  background(250);
 
   e.display();
   e.move();
@@ -18,12 +19,13 @@ class Enemy {
   float d;
   PImage bullet;
 
+
   Enemy(float x, float y) {
     locEnemy= new PVector (x, y);
     velEnemy= new PVector(-1, 0);
-    locBullet= new PVector (x-20,y);
-    velBullet= new PVector(-3,0);
-      bullet= loadImage("FParticles.png");
+    locBullet= new PVector (x-20, y);
+    velBullet= new PVector(-3, 0);
+    bullet= loadImage("bullet.png");
     d=50;
   }
 
@@ -34,15 +36,14 @@ class Enemy {
     locEnemy.add(velEnemy);
   }
   void attack() {
-     image(bullet,locBullet.x,locBullet.y); 
-//    ellipse(locBullet.x, locBullet.y, d-40, d-40);
+    image(bullet, locBullet.x, locBullet.y, d-30, d-30); 
     locBullet.add(velBullet);
   }
-//
-//  void checkForCharacter(Chracterclass c) {
-//    if (loc.dist(c.loc)<d/2+c.d/2) {
-//      e.attack();
-//    }
-//  }
+  //
+  //  void checkForCharacter(Chracterclass c) {
+  //    if (loc.dist(c.loc)<d/2+c.d/2) {
+  //      e.attack();
+  //    }
+  //  }
 }
 
