@@ -10,10 +10,10 @@ class character {
 
   character(float x, float y) {
 /////////////////////////////////////////////Character Variables
-    locCharacter=new PVector(50,height-20); 
+    locCharacter=new PVector(width*.1, height*.9); 
     vel=new PVector(0, 0);
     acc=new PVector(0, 0);
-    sz= 40;
+    sz= 100;
     jumping=false;
 /////////////////////////////////////////////Character Variables
 

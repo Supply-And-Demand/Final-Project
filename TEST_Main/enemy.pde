@@ -48,9 +48,9 @@ class Enemy {
     locEnemy.add(velEnemy);
   }
   void attack() {
-    image(bullet, locBullet.x, locBullet.y, d-30, d-30); 
+    image(bullet, locBullet.x, locBullet.y, d-15, d-15); 
     locBullet.add(velBullet);
-    if(locBullet.dist(c.locCharacter)<100/2){//100 because that's the size of the enemy
+    if(locBullet.dist(c.locCharacter)<40/2|| locBullet.x<0){//100 because that's the size of the enemy
      locBullet.x=locEnemy.x; 
     }
   }
