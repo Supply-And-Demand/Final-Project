@@ -50,13 +50,13 @@ class Enemy {
   void attack() {
     image(bullet, locBullet.x, locBullet.y, d-30, d-30); 
     locBullet.add(velBullet);
-    if(locBullet.x<0){
+    if(locBullet.dist(c.locCharacter)<100/2){//100 because that's the size of the enemy
      locBullet.x=locEnemy.x; 
     }
   }
  
   void checkForCharacter(character c) {
-   if (locEnemy.dist(c.loc)<500) {
+   if (locEnemy.dist(c.locCharacter)<500) {
      e.attack();
    }
     }
