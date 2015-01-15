@@ -5,7 +5,7 @@ class character {
   //                                                  //
   //////////////////////////////////////////////////////
   PVector loc, vel, acc;
-  float n, xoff, xinc, sz;
+  float n, xoff, xinc, sz, yoff, yinc, m;
   boolean jumping;
 
   character() {
@@ -14,19 +14,28 @@ class character {
     acc=new PVector(0, 0);
     sz= 20;
     jumping=false;
-    n=map(noise(xoff),0,1,loc.x-25,loc.x-20);
+
     xoff=0;
     xinc=.1;
+    yoff=0;
+    yinc=.1;
+    n=map(noise(xoff), 0, 1, loc.x-25, loc.x-20);
     xoff+=xinc;
+    m=map(noise(yoff), 0, 1, loc.y-25, loc.y-20);
+    yoff+=yinc;
   }
 
   void display() {
     fill(255, 0, 0);
     ellipse(loc.x, loc.y, sz, sz);
-    ellipse(n, loc.y, 20, 20);
+    ellipse(n, m+22.5, 20, 20);
   }
 
   void move() {
+    n=map(noise(xoff), 0, 1, loc.x-25, loc.x-20);
+    xoff+=xinc;
+    m=map(noise(yoff), 0, 1, loc.y-25, loc.y-20);
+    yoff+=yinc;
     vel.add(acc);
     loc.add(vel);
     if (jumping && loc.y + sz/2 >= height) {
