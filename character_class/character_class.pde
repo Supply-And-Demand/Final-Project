@@ -10,7 +10,7 @@ class character {
 
   character() {
 /////////////////////////////////////////////Character Variables
-    loc=new PVector(width*.1, height*.9); 
+    loc=new PVector(50, height-10); 
     vel=new PVector(0, 0);
     acc=new PVector(0, 0);
     sz= 20;
