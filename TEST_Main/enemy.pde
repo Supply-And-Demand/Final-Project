@@ -1,18 +1,3 @@
-Enemy e;
-void setup() {
-  size(800, 600);
-  e= new Enemy(random(350, 750), 550);
-}
-
-void draw() {
-  background(250);
-
-  e.display();
-  e.move();
-  e.attack();
-}
-
-
 ///////////////////
 class Enemy {
   PVector locEnemy, locBullet, velEnemy, velBullet;
@@ -38,7 +23,6 @@ class Enemy {
   }
 
   void display() {
-//   image('enemy1',locEnemy.x,locEnemy.y,d,d);
 
    if(imagerunning==1){
      image(Enemy1,locEnemy.x,locEnemy.y);
@@ -66,10 +50,13 @@ class Enemy {
   void attack() {
     image(bullet, locBullet.x, locBullet.y, d-30, d-30); 
     locBullet.add(velBullet);
+    if(locBullet.x<0){
+     locBullet.x=locEnemy.x; 
+    }
   }
  
   void checkForCharacter(character c) {
-   if (loc.dist(c.loc)<d/2+c.d/2) {
+   if (locEnemy.dist(c.loc)<500) {
      e.attack();
    }
     }
@@ -78,4 +65,3 @@ class Enemy {
 //     //.remove 
 //    }
 }
-
