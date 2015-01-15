@@ -19,23 +19,20 @@ class character {
     xinc=.1;
     yoff=0;
     yinc=.1;
-    n=map(noise(xoff), 0, 1, loc.x-25, loc.x-20);
-    xoff+=xinc;
-    m=map(noise(yoff), 0, 1, loc.y-25, loc.y-20);
-    yoff+=yinc;
+    
   }
 
   void display() {
     fill(255, 0, 0);
     ellipse(loc.x, loc.y, sz, sz);
-    ellipse(n, m+22.5, 20, 20);
+    ellipse(n, m, 10, 10);
   }
 
   void move() {
-    n=map(noise(xoff), 0, 1, loc.x-25, loc.x-20);
-    xoff+=xinc;
-    m=map(noise(yoff), 0, 1, loc.y-25, loc.y-20);
-    yoff+=yinc;
+    n=map(noise(xoff), 0, 1, loc.x-45, loc.x-10);
+    xoff+=.25*xinc;
+    m=map(noise(yoff), 0, 1, loc.y-45, loc.y-40);
+    yoff+=.25*yinc;
     vel.add(acc);
     loc.add(vel);
     if (jumping && loc.y + sz/2 >= height) {
