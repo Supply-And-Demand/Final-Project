@@ -10,5 +10,5 @@ void draw(){
  background(0);
 character.display();
 character.move();
-
+character.sidekick();
 }
