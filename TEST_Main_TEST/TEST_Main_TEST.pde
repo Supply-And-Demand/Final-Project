@@ -9,18 +9,23 @@ void setup() {
 }
 
 void draw() {
-  background(250);
+  background(0);
 
 
-if(c.checkIfPressed()){
-  c.move();
-}
-else{
- c.display();
-} 
+//if(c.checkIfPressed()){
+//  c.move();
+//}
+//  if (!c.checkIfPressed()){
+//   c.display(); 
+//  
+//}
 
-//c.display();
-//c.move();
+
+
+
+
+c.display();
+c.move();
 c.sidekick();
 //  e.display();
 //  e.move();
