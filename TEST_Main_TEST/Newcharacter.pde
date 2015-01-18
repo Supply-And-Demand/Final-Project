@@ -68,7 +68,7 @@ if (keyPressed) {
      if(key=='x'){
           image(stand, loc.x, loc.y, sz, sz); 
       image(pencil, locWeapon.x, locWeapon.y, 15, 15); 
-    locWeapon.add(velWeapon);
+     locWeapon.add(velWeapon);
      } 
     }
     

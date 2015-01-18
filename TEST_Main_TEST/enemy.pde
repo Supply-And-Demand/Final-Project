@@ -2,7 +2,7 @@ class Enemy {
   PVector locEnemy, locBullet, velEnemy, velBullet;
   float d;
   PImage bullet, Enemy1, Enemy2, Enemy3, Enemy4;
-  int imagerunning;
+  float imagerunning;
 
 
 
@@ -36,7 +36,7 @@ class Enemy {
       image(Enemy4, locEnemy.x, locEnemy.y);
     }
 
-    imagerunning++;
+    imagerunning=imagerunning+.25;
     if (imagerunning>4) {
       imagerunning=1;
     }
