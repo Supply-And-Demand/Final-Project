@@ -3,7 +3,7 @@ class character {
   PVector loc, locWeapon, velWeapon, vel, acc;
   float n, xoff, xinc, sz, yoff, yinc, m;
   boolean jumping;
-  PImage jump, right, left, stand, pencil;
+  PImage jump, right, left, stand, pencil,Bill;
 
   character(float x, float y) {
    
@@ -19,6 +19,7 @@ class character {
     pencil= loadImage("PencilWeap.png");
      locWeapon= new PVector (loc.x+20, y);
     velWeapon= new PVector(3, 0);
+    Bill= loadImage("Bill.png");
 
 
 
@@ -58,7 +59,7 @@ if (keyPressed) {
     xoff+=.25*xinc;
     m=map(noise(yoff), 0, 1, loc.y-45, loc.y-30);
     yoff+=.25*yinc;
-      ellipse(n, m, 10, 10);
+      image(Bill,n, m, 20, 30);
   }
   
   void attack(){
