@@ -48,24 +48,7 @@ class character {
     if (!keyPressed) {
       image(stand, loc.x, loc.y, sz, sz);
     }
-  }
-
-//  void life() {
-//    if (life==3) {
-//      image(heart, 0, 10, 50, 50);
-//      image(heart, 50, 10, 50, 50);
-//      image(heart, 100, 10, 50, 50);
-//    }  if (life==2) {
-//      image(heart, 0, 10, 50, 50);
-//      image(heart, 50, 10, 50, 50);
-//    }
-//    if (life==1){
-//       image(heart, 0, 10, 50, 50);
-//    }
-//  }
-//  
-
-
+  } 
 
   void sidekick() {
 

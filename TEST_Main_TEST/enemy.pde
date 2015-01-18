@@ -47,22 +47,13 @@ class Enemy {
   void attack() {
     image(bullet, locBullet.x, locBullet.y, d-15, d-15); 
     locBullet.add(velBullet);
-//    if (locBullet.dist(c.loc)<d/2|| locBullet.x<0) {//if fbomb hits him
-//      locBullet.x=locEnemy.x;
-      
-//    }
+    if(locBullet.x<0){
+       locBullet.x=locEnemy.x;
+    }
   }
 
-//boolean checkForCharacter(){
-//      if (locEnemy.dist(c.loc)<500) {//if kev is in range
-//        return true;
-//      }
-//      else{
-//       return false; 
-//      }
-//}
 boolean hit(){
-      if (locBullet.dist(c.loc)<d/2|| locBullet.x<0) {//if fbomb hits him
+      if (locBullet.dist(c.loc)<d/2) {//if fbomb hits him
      locBullet.x=locEnemy.x;
      return true;
     }

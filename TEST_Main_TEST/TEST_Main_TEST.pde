@@ -41,6 +41,7 @@ e.checkForCharacter(c);
     if (life==1){
        image(heart, 0, 10, 50, 50);
     }
+
   
  if (keyPressed == true) {
     if (space == false) {    
