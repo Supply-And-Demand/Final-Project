@@ -9,7 +9,7 @@ class Enemy {
   Enemy(float x, float y) {
     locEnemy= new PVector (x, y);
     velEnemy= new PVector(-1, 0);
-    locBullet= new PVector (x-20, y);
+    locBullet= new PVector (locEnemy.x-20, y);
     velBullet= new PVector(-3, 0);
     bullet= loadImage("bullet.png");
 
@@ -47,13 +47,13 @@ class Enemy {
   void attack() {
     image(bullet, locBullet.x, locBullet.y, d-15, d-15); 
     locBullet.add(velBullet);
-    if (locBullet.dist(c.locCharacter)<40/2|| locBullet.x<0) {//100 because that's the size of the enemy
+    if (locBullet.dist(c.loc)<40/2|| locBullet.x<0) {//100 because that's the size of the enemy
       locBullet.x=locEnemy.x;
     }
   }
 
   void checkForCharacter(character c) {
-    if (locEnemy.dist(c.locCharacter)<500) {
+    if (locEnemy.dist(c.loc)<500) {
       e.attack();
     }
   }

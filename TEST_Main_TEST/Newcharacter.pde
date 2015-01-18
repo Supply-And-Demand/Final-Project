@@ -1,13 +1,13 @@
 class character {
  
-  PVector locCharacter, vel, acc;
+  PVector loc, locWeapon, velWeapon, vel, acc;
   float n, xoff, xinc, sz, yoff, yinc, m;
   boolean jumping;
-  PImage jump, right, left, stand;
+  PImage jump, right, left, stand, pencil;
 
   character(float x, float y) {
    
-    locCharacter=new PVector(x, y); 
+    loc=new PVector(x, y); 
     vel=new PVector(0, 0);
     acc=new PVector(0, 0);
     sz= 60;
@@ -16,6 +16,9 @@ class character {
     right= loadImage("MegaKevRight.png"); 
     left= loadImage("MegaKevLeft.png");
     stand= loadImage("MegaKevStand.png");
+    pencil= loadImage("PencilWeap.png");
+     locWeapon= new PVector (loc.x+20, y);
+    velWeapon= new PVector(3, 0);
 
 
 
@@ -29,18 +32,21 @@ class character {
 
 if (keyPressed) {
       if (key=='d') { 
-        image(right, locCharacter.x, locCharacter.y, sz, sz);        
+        image(right, loc.x, loc.y, sz, sz);        
       }
 
      else if (key=='a') {       
-        image(left, locCharacter.x, locCharacter.y, sz, sz);                                                                                                                      
+        image(left, loc.x, loc.y, sz, sz);                                                                                                                      
       }                                                                      
       else if (key=='w') {  
-        image(jump, locCharacter.x, locCharacter.y, sz, sz);       
+        image(jump, loc.x, loc.y, sz, sz);       
+      }
+      else{
+              image(stand, loc.x, loc.y, sz, sz);  
       }
 }
    if (!keyPressed){
-       image(stand, locCharacter.x, locCharacter.y, sz, sz);  
+       image(stand, loc.x, loc.y, sz, sz);  
       }
          
     }
@@ -48,19 +54,32 @@ if (keyPressed) {
   
   void sidekick() {
 
-    n=map(noise(xoff), 0, 1, locCharacter.x-45, locCharacter.x-10);
+    n=map(noise(xoff), 0, 1, loc.x-45, loc.x-10);
     xoff+=.25*xinc;
-    m=map(noise(yoff), 0, 1, locCharacter.y-45, locCharacter.y-30);
+    m=map(noise(yoff), 0, 1, loc.y-45, loc.y-30);
     yoff+=.25*yinc;
       ellipse(n, m, 10, 10);
   }
+  
+  void attack(){
+
+    if (keyPressed){
+     if(key=='x'){
+          image(stand, loc.x, loc.y, sz, sz); 
+      image(pencil, locWeapon.x, locWeapon.y, 15, 15); 
+    locWeapon.add(velWeapon);
+     } 
+    }
+    
+  }
+
 
   void move() {
 
     vel.add(acc);
-    locCharacter.add(vel);
-    if (jumping && locCharacter.y + sz/2 >= height) {
-      locCharacter.y = height -60;
+    loc.add(vel);
+    if (jumping && loc.y + sz/2 >= height) {
+      loc.y = height -60;
       vel.y = 0;
       acc.y = 0;
       jumping = false;
@@ -68,13 +87,13 @@ if (keyPressed) {
 
     if (keyPressed) {
       if (key=='d') {       
-        locCharacter.x+=3;
+        loc.x+=3;
 
         println("right");
       }
 
       if (key=='a') {             
-        locCharacter.x-=3;                                                             
+        loc.x-=3;                                                             
         println("left");                                                     
       }                                                                      
       if (key=='w') {        
@@ -89,12 +108,6 @@ if (keyPressed) {
            
     }
   }
-//  boolean checkIfPressed() {
-//    if (key=='w'||key=='a'||key=='d') {
-//      return true;
-//    } else {
-//      return false;
-//    }
-//  }
+
 }
 
