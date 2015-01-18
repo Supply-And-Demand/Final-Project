@@ -38,12 +38,14 @@ if (keyPressed) {
       else if (key=='w') {  
         image(jump, locCharacter.x, locCharacter.y, sz, sz);       
       }
-      else 
+}
+   if (!keyPressed){
        image(stand, locCharacter.x, locCharacter.y, sz, sz);  
+      }
          
     }
   
-  }
+  
   void sidekick() {
 
     n=map(noise(xoff), 0, 1, locCharacter.x-45, locCharacter.x-10);
