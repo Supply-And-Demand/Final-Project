@@ -8,6 +8,6 @@ void setup() {
 
 void draw(){
  background(0);
-platform.display; 
+platform.display(); 
 }
 
