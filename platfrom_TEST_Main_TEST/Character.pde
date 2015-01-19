@@ -119,12 +119,13 @@ class character {
     }
    }
    void platformCheck(){
-     if (loc.dist(p.loc[0])<100/2){//100=sz of platform
+     if (loc.dist(p.loc[0])<100/2&& loc.y+sz/2>height-300){//100=sz of platform
 //     loc.x=loc.x-1;
 loc.x=loc.x-5;
+loc.y=50;
      }
-//     else if(loc.y+sz/2>100/2){
-//       loc.y=loc.y+50;
+//     else if(loc.dist(p.loc[0])<100/2&& loc.y+sz/2>height-60){
+//       loc.y=50;
 //     }
    }
    

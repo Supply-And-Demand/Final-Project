@@ -16,7 +16,7 @@ void setup() {
   e= new Enemy(random(350, width), height-60);
   c= new character (random(0,1),height-60);
   w= new character(random(0,1),height-60);//weapon
-  p=new platform(width/2, height-30);//platform
+  p=new platform(width/4, height-30);//platform
   market = new Market();
   space = false;
   ammo=3;
