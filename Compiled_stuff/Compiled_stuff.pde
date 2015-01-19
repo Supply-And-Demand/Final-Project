@@ -31,6 +31,7 @@ void draw() {
   c.display();
   c.move();
   c.platformCheck();
+  c.enemyCheck();
   ///market///
   if (keyPressed == true) {
     if (space == false) {    

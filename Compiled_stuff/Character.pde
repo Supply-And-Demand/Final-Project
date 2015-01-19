@@ -118,6 +118,11 @@ class character {
       return false;
     }
   }
+  void enemyCheck(){
+    if (loc.dist(e.loc)<sz/2){
+     loc.x=loc.x-5; 
+    }
+  }
   void platformCheck() {
     if (loc.dist(p.loc[0])<100/2) {//100=sz of platform
       //     loc.x=loc.x-1;
