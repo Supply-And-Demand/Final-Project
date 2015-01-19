@@ -19,7 +19,7 @@ class character {
     stand= loadImage("MegaKevStand.png");
     pencil= loadImage("PencilWeap.png");
     heart= loadImage("Heart.png");
-    locWeapon= new PVector (loc.x+100, height-40);
+    locWeapon= new PVector (loc.x+50, height-40);
     velWeapon= new PVector(3, 0);
     Bill= loadImage("Bill.png");
 
@@ -123,16 +123,25 @@ class character {
      loc.x=loc.x-5; 
     }
   }
-  void platformCheck() {
-    if (loc.dist(p.loc[0])<100/2) {//100=sz of platform
-      //     loc.x=loc.x-1;
-      loc.x=loc.x-5;
-    }
+//  void platformCheck() {
+//    if (loc.dist(p.loc[0])<100/2) {//100=sz of platform
+//      //     loc.x=loc.x-1;
+//      loc.x=loc.x-5;
+//    }
+//    if(loc.dist(p.loc[0])<100/2&& loc.y+sz/2<p.loc.y+100){
+//      loc.y=loc.y+20;
     //     else if(loc.y+sz/2>100/2){
     //       loc.y=loc.y+50;
     //     }
+//  }
+//  }
+  boolean platformCheck(){
+       if (loc.dist(p.loc[0])<100/2) {
+      return true;
+    } else {
+      return false;
+    }
   }
-
   //   void platformDisplay(){
   //     
   //   }
