@@ -17,7 +17,7 @@ void setup() {
   e= new Enemy(random(350, width), height-60);
   c= new character (random(0, 1), height-60);
   w= new character(random(0, 1), height-60);//weapon
-  p=new platform(width/4, height-30);//platform
+  p=new platform(width/4, height-80);//platform
   market = new Market();
   space = false;
   ammo=3;
@@ -31,12 +31,13 @@ void draw() {
   c.display();
   c.move();
   c.sidekick();
+  c.platformCheck();
 // if( c.platformXCheck()){
 // c.loc.x=c.loc.x-1;
 // }
- if(c.platformYCheck()){
-  c.loc.y=c.loc.y-1; 
- }
+// if(c.platformYCheck()){
+//  c.loc.y=c.loc.y-1; 
+// }
   c.enemyCheck();
   ///market///
   if (keyPressed == true) {

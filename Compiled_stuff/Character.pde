@@ -123,18 +123,24 @@ class character {
      loc.x=loc.x-5; 
     }
   }
-//  void platformCheck() {
-//    if (loc.dist(p.loc[0])<100/2) {//100=sz of platform
-//      //     loc.x=loc.x-1;
-//      loc.x=loc.x-5;
-//    }
+  void platformCheck() {
+    if (loc.dist(p.loc[0])<100/2) {//100=sz of platform
+      //     loc.x=loc.x-1;
+      loc.x=loc.x-5;
+      loc.y=p.loc[0].y-50;
+      
+    }
+    if(loc.x>p.loc[0].x+200) {
+        loc.y=height-60;
+      }
+    
 //    if(loc.dist(p.loc[0])<100/2&& loc.y+sz/2<p.loc.y+100){
 //      loc.y=loc.y+20;
-    //     else if(loc.y+sz/2>100/2){
-    //       loc.y=loc.y+50;
-    //     }
+//         else if(loc.y+sz/2>100/2){
+//           loc.y=loc.y+50;
+//         }
 //  }
-//  }
+  }
 //  boolean platformXCheck(){
 ////       if (loc.dist(p.loc[0])<100/2) {
 //  if(loc.x+sz/2>p.loc[0].x-sz/2){

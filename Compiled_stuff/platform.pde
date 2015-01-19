@@ -19,7 +19,7 @@ class platform {
       //  image(platform,x[i],y[i],sz[i],sz[i]/2);
 
       //}
-      image(platform, loc[0].x, loc[0].y, 300, 300/2);
+      image(platform, loc[0].x, loc[0].y, 200, 50);
     }
   }
 
