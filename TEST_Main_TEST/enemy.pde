@@ -1,7 +1,7 @@
 class Enemy {
   PVector loc, locBullet, vel, velBullet;
   float d,t;
-  PImage bullet, Enemy1, Enemy2, Enemy3, Enemy4;
+  PImage bullet, Enemy1, Enemy2, Enemy3, Enemy4,EnemyDead;
   float imagerunning;
 
 
@@ -17,6 +17,7 @@ class Enemy {
     Enemy2= loadImage("Enemy2.png"); 
     Enemy3= loadImage("Enemy3.png");
     Enemy4= loadImage("Enemy4.png");
+    EnemyDead= loadImage("deadrobot.png");
     imagerunning=1;
     d=50;
     t=1;
@@ -60,6 +61,9 @@ class Enemy {
       return false;
     }
   }
+      void dead(){
+    image(EnemyDead, loc.x,loc.y+20);
+    }
 
   void checkForCharacter(character c) {
     if (loc.dist(c.loc)<500) {

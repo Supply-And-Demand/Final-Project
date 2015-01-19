@@ -9,7 +9,7 @@ character w;
 
 void setup() {
   size(1200, 700);
-  life=3;
+  life=5;
   failed= loadImage("failedbackground.png");
   heart= loadImage("Heart.png");
   pencil= loadImage("PencilWeap.png");
@@ -54,8 +54,9 @@ void draw() {
     }
   }
 
-  if (enemyLife==0) {
+  if (enemyLife<1) {
     c.display();
+    e.dead();
   }
 
   if (keyPressed == true) {
@@ -88,32 +89,41 @@ void draw() {
       enemyLife--;
     }
   }
-
-  if (life==3) {
-    c.display();
+      c.display();
     c.sidekick();
+  if (life==5) {
+    image(heart, 0, 10, 50, 50);
+    image(heart, 50, 10, 50, 50);
+    image(heart, 100, 10, 50, 50);
+    image(heart, 150, 10, 50, 50);
+    image(heart, 200, 10, 50, 50);
+  }  
+  if (life==4) {
+
+    image(heart, 0, 10, 50, 50);
+    image(heart, 50, 10, 50, 50);
+    image(heart, 100, 10, 50, 50);
+    image(heart, 150, 10, 50, 50);
+  }  
+  if (life==3) {
     image(heart, 0, 10, 50, 50);
     image(heart, 50, 10, 50, 50);
     image(heart, 100, 10, 50, 50);
   }  
   if (life==2) {
-    c.display();
-    c.sidekick();
     image(heart, 0, 10, 50, 50);
     image(heart, 50, 10, 50, 50);
   }
   if (life==1) {
-    c.display();
-    c.sidekick();
     image(heart, 0, 10, 50, 50);
   }
 
   if (life==0) {
-    image(failed,0, 0, width, height);
+    image(failed, 0, 0, width, height);
     fill(0);
     textSize(30);
     text("You have failed your classes, please close and", width/3.6, height/2) ;
-     text("reopen if you would like to try again", width/3.2, height/1.8) ;
+    text("reopen if you would like to try again", width/3.2, height/1.8) ;
     noLoop();
   }
 }
@@ -125,7 +135,6 @@ void keyPressed() {
     }
   }
 }
-
 
 
 
