@@ -1,6 +1,6 @@
 ArrayList<character> weaps= new ArrayList<character>();
 boolean space;
-int life, ammo;
+int life, ammo, enemyLife;
 PImage heart, pencil;
 Market market;
 Enemy e;
@@ -12,21 +12,22 @@ void setup() {
   life=3;
   heart= loadImage("Heart.png");
   pencil= loadImage("PencilWeap.png");
-  e= new Enemy(random(350, 750), height-60);
-  c= new character ();
-  w= new character();
+  e= new Enemy(random(350, width), height-60);
+  c= new character (random(0,1),height-60);
+  w= new character(random(0,1),height-60);
   market = new Market();
   space = false;
   ammo=3;
+  enemyLife=2;
   
 }
 
 void draw() {
   background(0, 10, 30);
 
-  c.display();
+//  c.display();
   c.move();
-  c.sidekick();
+//  c.sidekick();
 
 //  e.display();
 //  e.move();
@@ -36,18 +37,49 @@ void draw() {
 //  }
 
   if (life==3) {
+    c.display();
+    c.sidekick();
     image(heart, 0, 10, 50, 50);
     image(heart, 50, 10, 50, 50);
     image(heart, 100, 10, 50, 50);
   }  
   if (life==2) {
+    c.display();
+    c.sidekick();
     image(heart, 0, 10, 50, 50);
     image(heart, 50, 10, 50, 50);
   }
   if (life==1) {
+    c.display();
+    c.sidekick();
     image(heart, 0, 10, 50, 50);
   }
+  
+  if(life==0){
+   rect(0,0,width,height); 
 
+  }
+if(enemyLife==2){
+   e.display();
+  e.move();
+  e.checkForCharacter(c);
+  if (e.hit()) {
+    life=life-1;
+  }
+}
+
+if(enemyLife==1){
+  e.display();
+  e.move();
+  e.checkForCharacter(c);
+  if (e.hit()) {
+    life=life-1;
+  }
+}
+
+if(enemyLife==0){
+  c.display();
+}
 
   if (keyPressed == true) {
     if (space == false) {    
@@ -74,13 +106,17 @@ void draw() {
 if (c.edge()){
      weaps.remove(i);
 }
+if(c.shootEnemy()){
+ weaps.remove(i);
+enemyLife--; 
+}
   }
 }
 
 void keyPressed() {
   if (key=='x') {
     if (weaps.size() <ammo) {
-      weaps.add(new character ());
+      weaps.add(new character (random(0,1),height-60));
     }
   }
 }

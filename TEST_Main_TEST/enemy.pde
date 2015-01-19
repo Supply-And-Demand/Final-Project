@@ -1,5 +1,5 @@
 class Enemy {
-  PVector locEnemy, locBullet, velEnemy, velBullet;
+  PVector loc, locBullet, vel, velBullet;
   float d,t;
   PImage bullet, Enemy1, Enemy2, Enemy3, Enemy4;
   float imagerunning;
@@ -7,9 +7,9 @@ class Enemy {
 
 
   Enemy(float x, float y) {
-    locEnemy= new PVector (x, y);
-    velEnemy= new PVector(-1, 0);
-    locBullet= new PVector (locEnemy.x-100, y);
+    loc= new PVector (x, y);
+    vel= new PVector(-1, 0);
+    locBullet= new PVector (loc.x-100, y);
     velBullet= new PVector(-3, 0);
     bullet= loadImage("bullet.png");
 
@@ -26,35 +26,35 @@ class Enemy {
 
   t +=1;
    if (t>0 && t<11) {
-     image(Enemy1, locEnemy.x, locEnemy.y);
+     image(Enemy1, loc.x, loc.y);
    }
     if (t>10 && t<21) {
-     image(Enemy2, locEnemy.x, locEnemy.y);
+     image(Enemy2, loc.x, loc.y);
    }
    if (t>20 && t<31) {
-     image(Enemy3, locEnemy.x, locEnemy.y);
+     image(Enemy3, loc.x, loc.y);
    }
    if (t>30 && t<41) {
-     image(Enemy4, locEnemy.x, locEnemy.y);
+     image(Enemy4, loc.x, loc.y);
    }
    if(t>40){
    t = 1;
  }
   }
   void move() {
-    locEnemy.add(velEnemy);
+    loc.add(vel);
   }
   void attack() {
     image(bullet, locBullet.x, locBullet.y, d-15, d-15); 
     locBullet.add(velBullet);
     if (locBullet.x<0) {
-      locBullet.x=locEnemy.x;
+      locBullet.x=loc.x;
     }
   }
 
   boolean hit() {
     if (locBullet.dist(c.loc)<d/2) {//if fbomb hits him
-      locBullet.x=locEnemy.x;
+      locBullet.x=loc.x;
       return true;
     } else {
       return false;
@@ -62,7 +62,7 @@ class Enemy {
   }
 
   void checkForCharacter(character c) {
-    if (locEnemy.dist(c.loc)<500) {
+    if (loc.dist(c.loc)<500) {
       e.attack();
     }
   }
