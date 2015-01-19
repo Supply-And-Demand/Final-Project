@@ -6,9 +6,9 @@ class character {
   PImage jump, right, left, stand, pencil, Bill, heart;
   int life;
 
-  character(float x, float y) {
+  character() {
 
-    loc=new PVector(x, y); 
+    loc=new PVector(0, height-60); 
     vel=new PVector(0, 0);
     acc=new PVector(0, 0);
     sz= 60;
@@ -19,7 +19,7 @@ class character {
     stand= loadImage("MegaKevStand.png");
     pencil= loadImage("PencilWeap.png");
     heart= loadImage("Heart.png");
-    locWeapon= new PVector (loc.x+50, y);
+    locWeapon= new PVector (loc.x+100, height-60);
     velWeapon= new PVector(3, 0);
     Bill= loadImage("Bill.png");
     life=3;
@@ -93,12 +93,21 @@ class character {
       }
     }
   }
-    void weapDisplay() {
+  void weapDisplay() {
     image(pencil, locWeapon.x, locWeapon.y, 100, 25);
   }
 
   void weapMove() {
     locWeapon.add(velWeapon);
+  }
+
+  boolean edge() {
+    if (locWeapon.x>width) {
+      return true;
+    } else {
+
+      return false;
+    }
   }
 }
 

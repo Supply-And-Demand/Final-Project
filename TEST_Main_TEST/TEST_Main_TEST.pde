@@ -13,8 +13,8 @@ void setup() {
   heart= loadImage("Heart.png");
   pencil= loadImage("PencilWeap.png");
   e= new Enemy(random(350, 750), height-60);
-  c= new character (0, height-60);
-  w= new character(0, height-60);
+  c= new character ();
+  w= new character();
   market = new Market();
   space = false;
   ammo=3;
@@ -64,18 +64,23 @@ void draw() {
     market.display();
     market.shop();
   }
-
+////pencil////
   for (int i=weaps.size ()-1; i>=0; i--) {
-    character w= weaps.get(i);
+    character c= weaps.get(i);
     c.weapDisplay();
     c.weapMove();
+  
+
+if (c.edge()){
+     weaps.remove(i);
+}
   }
 }
 
 void keyPressed() {
   if (key=='x') {
     if (weaps.size() <ammo) {
-      weaps.add(new character (50, height-60));
+      weaps.add(new character ());
     }
   }
 }
