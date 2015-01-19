@@ -135,13 +135,25 @@ class character {
     //     }
 //  }
 //  }
-  boolean platformCheck(){
-       if (loc.dist(p.loc[0])<100/2) {
+//  boolean platformXCheck(){
+////       if (loc.dist(p.loc[0])<100/2) {
+//  if(loc.x+sz/2>p.loc[0].x-sz/2){
+//      return true;
+//    } else 
+//    {
+//      return false;
+//    }
+//  }
+  boolean platformYCheck(){
+     if(loc.y+sz/2>p.loc[0].y-300 && loc.x+sz/2>p.loc[0].x-sz/2){
       return true;
-    } else {
+    } else 
+    {
       return false;
     }
+  
   }
+
   //   void platformDisplay(){
   //     
   //   }

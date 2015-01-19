@@ -30,8 +30,12 @@ void draw() {
   p.display();
   c.display();
   c.move();
- if( c.platformCheck()){
- loc.x=loc.x-5;
+  c.sidekick();
+// if( c.platformXCheck()){
+// c.loc.x=c.loc.x-1;
+// }
+ if(c.platformYCheck()){
+  c.loc.y=c.loc.y-1; 
  }
   c.enemyCheck();
   ///market///
