@@ -19,7 +19,7 @@ class character {
     stand= loadImage("MegaKevStand.png");
     pencil= loadImage("PencilWeap.png");
     heart= loadImage("Heart.png");
-    locWeapon= new PVector (loc.x+20, y);
+    locWeapon= new PVector (loc.x+50, y);
     velWeapon= new PVector(3, 0);
     Bill= loadImage("Bill.png");
     life=3;
@@ -59,14 +59,26 @@ class character {
     image(Bill, n, m, 20, 30);
   }
 
-  void attack() {
+  void shoot() {
 
-    if (keyPressed) {
-      if (key=='x') {
-        image(stand, loc.x, loc.y, sz, sz); 
-        image(pencil, locWeapon.x, locWeapon.y, 15, 15); 
+//    if (keyPressed) {
+//      if (key=='x') {
+////        image(stand, loc.x, loc.y, sz, sz); 
+        image(pencil, locWeapon.x, locWeapon.y, 50, 25); 
         locWeapon.add(velWeapon);
-      }
+//      }
+//    }
+  }
+  
+  boolean attack(){
+    if(keyPressed&& key=='x'){
+   
+  
+      return true;
+      
+    }
+    else{
+     return false; 
     }
   }
 
