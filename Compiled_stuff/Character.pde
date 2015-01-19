@@ -127,11 +127,15 @@ class character {
     if (loc.dist(p.loc[0])<100/2) {//100=sz of platform
       //     loc.x=loc.x-1;
       loc.x=loc.x-5;
-      loc.y=p.loc[0].y-50;
+//      loc.y=p.loc[0].y-50;
       
     }
-    if(loc.x>p.loc[0].x+200) {
-        loc.y=height-60;
+//    if(loc.x>p.loc[0].x+200) {
+//        loc.y=height-60;
+//      }
+      
+      if(loc.y+60<=p.loc[0].y-50){
+       loc.y=p.loc[0].y-50; 
       }
     
 //    if(loc.dist(p.loc[0])<100/2&& loc.y+sz/2<p.loc.y+100){
