@@ -59,29 +59,6 @@ class character {
     image(Bill, n, m, 20, 30);
   }
 
-  void shoot() {
-
-//    if (keyPressed) {
-//      if (key=='x') {
-////        image(stand, loc.x, loc.y, sz, sz); 
-        image(pencil, locWeapon.x, locWeapon.y, 50, 25); 
-        locWeapon.add(velWeapon);
-//      }
-//    }
-  }
-  
-  boolean attack(){
-    if(keyPressed&& key=='x'){
-   
-  
-      return true;
-      
-    }
-    else{
-     return false; 
-    }
-  }
-
 
   void move() {
 
@@ -115,6 +92,13 @@ class character {
         println("up");
       }
     }
+  }
+    void weapDisplay() {
+    image(pencil, locWeapon.x, locWeapon.y, 100, 25);
+  }
+
+  void weapMove() {
+    locWeapon.add(velWeapon);
   }
 }
 
