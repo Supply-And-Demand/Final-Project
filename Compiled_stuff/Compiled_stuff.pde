@@ -15,10 +15,10 @@ void setup() {
   heart= loadImage("Heart.png");
   pencil= loadImage("PencilWeap.png");
   e= new Enemy(random(350, width), height-60);
-    c= new character (random(0,1),height-60);
-  w= new character(random(0,1),height-60);//weapon
+  c= new character (random(0, 1), height-60);
+  w= new character(random(0, 1), height-60);//weapon
   p=new platform(width/2, height-30);//platform
-    market = new Market();
+  market = new Market();
   space = false;
   ammo=3;
   enemyLife=2;
@@ -32,7 +32,7 @@ void draw() {
   c.move();
   c.platformCheck();
   ///market///
-    if (keyPressed == true) {
+  if (keyPressed == true) {
     if (space == false) {    
       if (key == 'm') {
         space = true;
@@ -47,7 +47,7 @@ void draw() {
     market.display();
     market.shop();
   }
-    ////pencil////
+  ////pencil////
   for (int i=weaps.size ()-1; i>=0; i--) {
     character c= weaps.get(i);
     c.weapDisplay();
@@ -63,7 +63,7 @@ void draw() {
     }
   }
   /////////////enemy life///////////////////
-    if (enemyLife==2) {
+  if (enemyLife==2) {
     e.display();
     e.move();
     e.checkForCharacter(c);
@@ -86,7 +86,7 @@ void draw() {
     e.dead();
   }
   ////////////character life/////////////////
-    if (life==5) {
+  if (life==5) {
     image(heart, 0, 10, 50, 50);
     image(heart, 50, 10, 50, 50);
     image(heart, 100, 10, 50, 50);
@@ -100,7 +100,7 @@ void draw() {
     image(heart, 100, 10, 50, 50);
     image(heart, 150, 10, 50, 50);
   }  
-   if (life==3) {
+  if (life==3) {
     image(heart, 0, 10, 50, 50);
     image(heart, 50, 10, 50, 50);
     image(heart, 100, 10, 50, 50);
@@ -126,7 +126,8 @@ void draw() {
 void keyPressed() {
   if (key=='x') {
     if (weaps.size() <ammo) {
-      weaps.add(new character (random(0, 1), height-60));
+      weaps.add(new character (c.loc.x, height-60));
     }
   }
 }
+

@@ -1,7 +1,7 @@
 class Enemy {
   PVector loc, locBullet, vel, velBullet;
-  float d,t;
-  PImage bullet, Enemy1, Enemy2, Enemy3, Enemy4,EnemyDead;
+  float d, t;
+  PImage bullet, Enemy1, Enemy2, Enemy3, Enemy4, EnemyDead;
   float imagerunning;
 
 
@@ -25,22 +25,22 @@ class Enemy {
 
   void display() {
 
-  t +=1;
-   if (t>0 && t<11) {
-     image(Enemy1, loc.x, loc.y);
-   }
+    t +=1;
+    if (t>0 && t<11) {
+      image(Enemy1, loc.x, loc.y);
+    }
     if (t>10 && t<21) {
-     image(Enemy2, loc.x, loc.y);
-   }
-   if (t>20 && t<31) {
-     image(Enemy3, loc.x, loc.y);
-   }
-   if (t>30 && t<41) {
-     image(Enemy4, loc.x, loc.y);
-   }
-   if(t>40){
-   t = 1;
- }
+      image(Enemy2, loc.x, loc.y);
+    }
+    if (t>20 && t<31) {
+      image(Enemy3, loc.x, loc.y);
+    }
+    if (t>30 && t<41) {
+      image(Enemy4, loc.x, loc.y);
+    }
+    if (t>40) {
+      t = 1;
+    }
   }
   void move() {
     loc.add(vel);
@@ -61,9 +61,9 @@ class Enemy {
       return false;
     }
   }
-      void dead(){
-    image(EnemyDead, loc.x,loc.y+20);
-    }
+  void dead() {
+    image(EnemyDead, loc.x, loc.y+20);
+  }
 
   void checkForCharacter(character c) {
     if (loc.dist(c.loc)<500) {
