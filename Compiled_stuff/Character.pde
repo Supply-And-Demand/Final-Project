@@ -63,9 +63,9 @@ class character {
 
   void move() {
 
-    vel.add(acc);
-    loc.add(vel);
-    if (jumping && loc.y + sz/2 > height) {
+ vel.add(acc);
+   loc.add(vel);
+   if (jumping && loc.y + sz > height) {
       loc.y = height -sz;
       vel.y = 0;
       acc.y = 0;
