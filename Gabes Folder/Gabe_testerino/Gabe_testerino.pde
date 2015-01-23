@@ -70,8 +70,8 @@ void draw() {
     if (c.shootEnemy()) {
       weaps.remove(i);
       enemyLife--;
-      if(enemyLife==1){
-         coins+=500;
+      if(enemyLife==0){
+         coins+=1;
        }
     }
   }
