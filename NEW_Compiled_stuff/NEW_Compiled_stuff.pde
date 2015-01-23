@@ -32,12 +32,6 @@ void draw() {
   c.move();
   c.sidekick();
   c.platformCheck();
-// if( c.platformXCheck()){
-// c.loc.x=c.loc.x-1;
-// }
-// if(c.platformYCheck()){
-//  c.loc.y=c.loc.y-1; 
-// }
   c.enemyCheck();
   ///market///
   if (keyPressed == true) {
@@ -92,6 +86,7 @@ void draw() {
     c.display();
     e.dead();
   }
+  
   ////////////character life/////////////////
   if (charLife==5) {
     image(heart, 0, 10, 50, 50);

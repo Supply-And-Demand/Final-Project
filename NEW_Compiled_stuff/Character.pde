@@ -156,7 +156,7 @@ vel.add(acc);
     }
   }
   void platformCheck() {
-    if(loc.x < p.loc.x || loc.x > p.loc.x + p.sz[0]) {
+    if(loc.x < p.loc.x || loc.x > p.loc.x + (p.sz[0]-100)) {
         println("guyx platx " + loc.x + " " + p.loc.x);
       float platformHeight = p.loc.y - p.sz[1];
     //println ("ph/py: " + platformHeight + " " + loc.y);
@@ -194,6 +194,9 @@ else if (loc.y <= p.loc.y - p.sz[1] && !onplatform) {
     } 
    }
 
+void nextlevel(){
+  
+}
 
   }
 //  boolean platformXCheck(){
