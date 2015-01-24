@@ -87,7 +87,7 @@ class character {
         image(jump2,loc.x,loc.y,sz,sz);}
       } else {
         if( shirt == 0){
-        image(stand, loc.x, loc.y, sz, sz);
+        image(stand, loc.x, loc.y, sz-6, sz-6);
         }
         else{
         image(stand2,loc.x,loc.y,sz,sz);}
@@ -95,7 +95,7 @@ class character {
     }
     if (!keyPressed) {
       if( shirt == 0){
-        image(stand, loc.x, loc.y, sz, sz);
+        image(stand, loc.x, loc.y, sz-6, sz-6);
         }
         else{
         image(stand2,loc.x,loc.y,sz,sz);}
