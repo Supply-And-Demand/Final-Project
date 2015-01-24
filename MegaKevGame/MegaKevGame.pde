@@ -21,7 +21,7 @@ void setup() {
   c= new character (random(0, 1), height-60);
   w= new character(random(0, 1), height-60);//weapon
   p= new platform(width/4, height-80);//platform
-  p2= new platform(width/2,height-80);
+  p2= new platform(width/2,height-100);
   market = new Market();
   space = false;
   ammo=1;
@@ -57,8 +57,8 @@ void draw() {
 
 if(c.pass()){
  c.loc.x=0;
-//p.loc.x= random(50,400); 
-//p2.loc.x= random(50,400);
+p.loc.x= random(50,(width/2)-1); 
+p2.loc.x= random(width/2,width);
 }
   ///market///
   if (keyPressed == true) {
