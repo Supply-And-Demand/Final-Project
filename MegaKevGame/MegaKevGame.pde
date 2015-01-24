@@ -1,4 +1,5 @@
 ArrayList<character> weaps= new ArrayList<character>();
+ArrayList<Enemy> ens= new ArrayList<Enemy>();
 //ArrayList<platform> plats= new ArrayList<platform>();
 //platform [] p= new platform [2];
 boolean space;
@@ -26,33 +27,29 @@ void setup() {
   space = false;
   ammo=1;
   enemyLife=2;
-//  game=0;
-// for(int i=0; i<p.length; i++){
-// p [i]= new platform(width/4,height-80);
-//  }
+  game=0;
 }
 
 void draw() {
   image(title,0,0,1000,500);
-//  if(game==1){
+  if(game==1){
   background(0, 10, 30);
   ///character///
-//  for(platform plats :p){
-//   plats.display(); 
-//  }
 
   p.display();
   p2.display();
   c.display();
   c.move();
   c.sidekick();
+    c.enemyCheck();
+    /////platforms////
   if(c.loc.x<width/2){
     c.platformCheck();
   }
   if(c.loc.x>width/2){
   c.platform2Check();
   }
-//  c.enemyCheck();
+
 /////advance to levels/////
 
 if(c.pass()){
@@ -90,30 +87,41 @@ p2.loc.x= random(width/2,width);
       enemyLife--;
     }
   }
-  /////////////enemy life///////////////////
-//  if (enemyLife==2) {
-//    e.display();
-//    e.move();
-//    e.checkForCharacter(c);
-//    if (e.hit()) {
-//      charLife=charLife-1;
-//    }
-//  }
-//
-//  if (enemyLife==1) {
-//    e.display();
-//    e.move();
-//    e.checkForCharacter(c);
-//    if (e.hit()) {
-//      charLife=charLife-1;
-//    }
-//  }
-//
-//  if (enemyLife<1) {
-//    c.display();
-//    e.dead();
-//  }
+
+    
   
+  
+  /////////////enemy life///////////////////
+  
+    ///enemy////
+
+  if (enemyLife==2) {
+    e.display();
+    e.move();
+    e.checkForCharacter(c);
+    if (e.hit()) {
+      charLife=charLife-1;
+    }
+  }
+
+  if (enemyLife==1) {
+    e.display();
+    e.move();
+    e.checkForCharacter(c);
+    if (e.hit()) {
+      charLife=charLife-1;
+    }
+  }
+
+  if (enemyLife<1) {
+    c.display();
+    e.dead();
+    Enemy e2= new Enemy (width, height-60);
+e2.display();
+e2.move();
+  }
+
+
   ////////////character life/////////////////
   if (charLife==5) {
     image(heart, 0, 10, 50, 50);
@@ -150,7 +158,7 @@ p2.loc.x= random(width/2,width);
     text("reopen if you would like to try again", width/3.2, height/1.8) ;
     noLoop();
   }
-// }//if statment brack
+ }//if statment brack
 }
 /////add pencils//////
 void keyPressed() {
@@ -166,8 +174,8 @@ void keyPressed() {
 //  }
 }
 
-//void mouseClicked(){
-// if(mouseX>width/2-100 && mouseX<width/2+100){
-//   game=1; 
-//}
-//}
+void mouseClicked(){
+ if(mouseX>width/2-100 && mouseX<width/2+100){
+   game=1; 
+}
+}

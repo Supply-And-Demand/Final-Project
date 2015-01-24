@@ -27,6 +27,7 @@ PVector loc;
 
       //}
       image(platform, loc.x, loc.y, w, h);
+//      image(lava, loc.x, height, w, 10);
     }
   }
 
