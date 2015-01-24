@@ -1,9 +1,9 @@
 class character {
 
   PVector loc, locWeapon, velWeapon, vel, acc;
-  float n, xoff, xinc, sz, yoff, yinc, m, jumpStart, jumpHeight;
+  float n, xoff, xinc, sz, yoff, yinc, m, jumpStart, jumpHeight,sidekickidentity;
   boolean jumping, onplatform;
-  PImage jump, right, left, stand, pencil, Bill, heart;
+  PImage jump, right, left, stand, jump2, right2, left2, stand2, pencil, Bill, Shark,Button, heart;
 
 
   character(float  x, float y) {
@@ -21,12 +21,17 @@ class character {
     right= loadImage("MegaKevRightRed.png"); 
     left= loadImage("MegaKevLeftRed.png");
     stand= loadImage("MegaKevStandRed.png");
+    jump2= loadImage("MegaKevJumpBlue.png");
+    right2= loadImage("MegaKevRightBlue.png"); 
+    left2= loadImage("MegaKevLeftBlue.png");
+    stand2= loadImage("MegaKevStandBlue.png");
     pencil= loadImage("PencilRight.png");
     heart= loadImage("Heart.png");
     locWeapon= new PVector (loc.x+50, height-40);
     velWeapon= new PVector(3, 0);
     Bill= loadImage("Bill.png");
-
+    Shark= loadImage("Shark.png");
+    Button= loadImage("Button.png");
     xoff=0;
     xinc=.1;
     yoff=0;
@@ -51,7 +56,6 @@ class character {
     heart= loadImage("Heart.png");
     locWeapon= new PVector (loc.x+offset, height-40);
     velWeapon= new PVector(tempVel, 0);
-    Bill= loadImage("Bill.png");
 
     xoff=0;
     xinc=.1;
@@ -60,31 +64,60 @@ class character {
   }
 
 
-  void display() {
+  void display(float shirt) {
 
     if (keyPressed) {
       if (key=='d'||key=='e') { 
+        if( shirt == 0){
         image(right, loc.x, loc.y, sz, sz);
+        }
+        else{
+        image(right2,loc.x,loc.y,sz,sz);}
       } else if (key=='a'||key=='q') {       
+         if( shirt == 0){
         image(left, loc.x, loc.y, sz, sz);
+        }
+        else{
+        image(left2,loc.x,loc.y,sz,sz);}
       } else if (key=='w') {  
-        image(jump, loc.x, loc.y, sz, sz+10);
+        if( shirt == 0){
+        image(jump, loc.x, loc.y, sz, sz);
+        }
+        else{
+        image(jump2,loc.x,loc.y,sz,sz);}
       } else {
-        image(stand, loc.x, loc.y, sz-10, sz);
+        if( shirt == 0){
+        image(stand, loc.x, loc.y, sz, sz);
+        }
+        else{
+        image(stand2,loc.x,loc.y,sz,sz);}
       }
     }
     if (!keyPressed) {
-      image(stand, loc.x, loc.y, sz-10, sz);
+      if( shirt == 0){
+        image(stand, loc.x, loc.y, sz, sz);
+        }
+        else{
+        image(stand2,loc.x,loc.y,sz,sz);}
     }
   } 
 
-  void sidekick() {
+  void sidekick(float sidekickidentity) {
 
     n=map(noise(xoff), 0, 1, loc.x-45, loc.x-10);
     xoff+=.25*xinc;
     m=map(noise(yoff), 0, 1, loc.y-45, loc.y-30);
     yoff+=.25*yinc;
+    
+    if (sidekickidentity == 1){
     image(Bill, n, m, 20, 30);
+    }
+       if (sidekickidentity == 2){
+    image(Button, n, m, 30, 30);
+    }
+       if (sidekickidentity == 3){
+    image(Shark, n, m, 80, 30);
+    }
   }
 
 
