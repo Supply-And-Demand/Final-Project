@@ -1,7 +1,7 @@
 ArrayList<character> weaps= new ArrayList<character>();
 boolean space;
 int charLife, ammo, enemyLife, game;
-PImage heart, pencil, failed, title;
+PImage heart, failed, title;
 Market market;
 Enemy e;
 character c;
@@ -13,7 +13,6 @@ void setup() {
   charLife=5;
   failed= loadImage("failedbackground.png");
   heart= loadImage("Heart.png");
-  pencil= loadImage("PencilWeap.png");
   title= loadImage("TitleScreen.png");
   e= new Enemy(random(350, width), height-60);
   c= new character (random(0, 1), height-60);
@@ -23,12 +22,12 @@ void setup() {
   space = false;
   ammo=1;
   enemyLife=2;
-  game=0;
+//  game=0;
 }
 
 void draw() {
   image(title,0,0,1200,700);
-  if(game==1){
+//  if(game==1){
   background(0, 10, 30);
   ///character///
   p.display();
@@ -127,7 +126,7 @@ void draw() {
     text("reopen if you would like to try again", width/3.2, height/1.8) ;
     noLoop();
   }
-  }//if statment brack
+ // }//if statment brack
 }
 /////add pencils//////
 void keyPressed() {
@@ -143,8 +142,8 @@ void keyPressed() {
   }
 }
 
-void mouseClicked(){
- if(mouseX>width/2-100 && mouseX<width/2+100){
-   game=1; 
-}
-}
+//void mouseClicked(){
+// if(mouseX>width/2-100 && mouseX<width/2+100){
+//   game=1; 
+//}
+//}

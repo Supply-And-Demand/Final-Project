@@ -105,12 +105,12 @@ vel.add(acc);
       if (key=='d') {       
         loc.x+=3;
 
-        println("right");
+//        println("right");
       }
 
       if (key=='a') {             
         loc.x-=3;                                                             
-        println("left");
+//        println("left");
       }                                                                      
       if (key=='w') {        
         if (!jumping) {   
@@ -121,7 +121,7 @@ vel.add(acc);
 
           jumping = true;
         }
-        println("up");
+//        println("up");
       }
     }
   }
@@ -157,7 +157,7 @@ vel.add(acc);
   }
   void platformCheck() {
     if(loc.x < p.loc.x || loc.x > p.loc.x + (p.sz[0]-100)) {
-        println("guyx platx " + loc.x + " " + p.loc.x);
+//        println("guyx platx " + loc.x + " " + p.loc.x);
       float platformHeight = p.loc.y - p.sz[1];
     //println ("ph/py: " + platformHeight + " " + loc.y);
        //vel.y = 0;
@@ -166,8 +166,8 @@ vel.add(acc);
        onplatform=false;
       if (loc.y < height - sz) {
          float jumpy = jumpStart - jumpHeight;
-        println("loc/jumpy " + loc.y + " " + jumpy);
-         println("above ground");
+//        println("loc/jumpy " + loc.y + " " + jumpy);
+//         println("above ground");
          acc.y = .1;
        }        else if(!jumping)
         {
@@ -176,7 +176,7 @@ vel.add(acc);
         }    
      }
 else if (loc.y <= p.loc.y - p.sz[1] && !onplatform) {
-     println("above platform");
+//     println("above platform");
       acc.y = 0;
       vel.y = 0;
       loc.y = p.loc.y- p.sz[1];
@@ -185,7 +185,7 @@ else if (loc.y <= p.loc.y - p.sz[1] && !onplatform) {
     }
     else if(jumping) {
       float jumpy = jumpStart - jumpHeight;
-       println("jump plat loc/jumpy " + loc.x + " " + p.loc.x);
+//       println("jump plat loc/jumpy " + loc.x + " " + p.loc.x);
       if(loc.y + sz > jumpStart + jumpHeight) {
       acc.y = 0;
       vel.y = 0;
@@ -199,27 +199,4 @@ void nextlevel(){
 }
 
   }
-//  boolean platformXCheck(){
-////       if (loc.dist(p.loc[0])<100/2) {
-//  if(loc.x+sz/2>p.loc[0].x-sz/2){
-//      return true;
-//    } else 
-//    {
-//      return false;
-//    }
-//  }
-//  boolean platformYCheck(){
-//    if(loc.y+sz/2>p.loc.y-300 && loc.x+sz/2>p.loc.x-sz/2){
-//       return true;
-//    } else 
-//    {
-//      return false;
-//    }
-//  
-//  }
-
-  //   void platformDisplay(){
-  //     
-  //   }
-//}
 
