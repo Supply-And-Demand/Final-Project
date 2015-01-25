@@ -5,6 +5,9 @@ ArrayList<Enemy> ens= new ArrayList<Enemy>();
 boolean space;
 int charLife, ammo, enemyLife, game, coins, sidekick, weospeed, shirt;
 PImage heart, failed, title, points;
+import ddf.minim.*;
+AudioPlayer player;
+Minim minim;
 Market market;
 Enemy e;
 character c;
@@ -19,6 +22,8 @@ void setup() {
   heart= loadImage("Heart.png");
   title= loadImage("TitleScreen.png");
   points= loadImage("pointsystem.png");
+  minim = new Minim(this);
+  player = minim.loadFile("Song.wav", 2048);
   e= new Enemy(random(350, width), height-60);
   c= new character (random(0, 1), height-60);
   w= new character(random(0, 1), height-60);//weapon
@@ -38,6 +43,7 @@ void setup() {
 void draw() {
   image(title, 0, 0, 1200, 700);
   if (game==1) {
+    player.play();
     background(0, 10, 30);
     image(points, 0, 80);
     fill(255, 0, 0);
@@ -95,18 +101,12 @@ void draw() {
         weaps.remove(i);
         enemyLife--;
         if (enemyLife==0) {
-          coins+=100;
+          coins+=10;
         }
       }
     }
-
-
-
-
     /////////////enemy life///////////////////
-
     ///enemy////
-
     if (enemyLife==2) {
       e.display();
       e.move();
@@ -132,8 +132,8 @@ void draw() {
       e2.move();
     }
 
-
-    ////////////character life/////////////////
+    ///////////////////////////////////////////////////////////
+    ////////////////character life////////////////////
     if (charLife==5) {
       image(heart, 0, 10, 50, 50);
       image(heart, 50, 10, 50, 50);
@@ -169,7 +169,7 @@ void draw() {
       text("reopen if you would like to try again", width/3.2, height/1.8) ;
       noLoop();
     }
-
+    //////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////MARKET BELOW CAUTION/////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////
@@ -194,8 +194,8 @@ void draw() {
       }
       if (mouseX>=337 && mouseX<=380 && mouseY>=247 && mouseY<=290 && coins > 14) {
         if (mousePressed == true) {
-            weospeed += 3;
-            coins -= 15;
+          weospeed += 3;
+          coins -= 15;
         }
       }
       if (mouseX>=645 && mouseX<=688 && mouseY>=157 && mouseY<=200 && coins > 4 && charLife < 5) {
@@ -210,18 +210,17 @@ void draw() {
           coins-= 15;
         }
       }
-        if (mouseX>=645 && mouseX<=688 && mouseY>=202 && mouseY<=245  && coins > 14) {
+      if (mouseX>=645 && mouseX<=688 && mouseY>=202 && mouseY<=245  && coins > 14) {
         if (mousePressed == true) {
           shirt = 1;
           coins-= 15;
         }
       }
-      
     }
     ////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////MARKET UPWARD CAUTION////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////
-  } //if statementd
+  } //if statement Game == 1
 }
 void mouseClicked() {
   if (mouseX>0 && mouseX<width) {
@@ -240,6 +239,12 @@ void keyPressed() {
     if (weaps.size() <ammo) {
       weaps.add(new character (c.loc.x, c.loc.y, -weospeed, -50, "PencilLeft"));
     }
+  }
+  if (key == 'l') {
+    player.close();
+  }
+  if (key == 'k') {
+    player.rewind();
   }
 }
 
