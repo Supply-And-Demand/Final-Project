@@ -176,18 +176,22 @@ class character {
       return false;
     }
   }
-  boolean shootEnemy() {//detects shot
-    if (locWeapon.dist(enemyArray[0].loc)<sz/2) {
+  boolean shootEnemy(int j) {//detects shot
+    if (locWeapon.dist(enemyArray[j].loc)<sz/2) {
       return true;
-    } else {
+    } 
+    else {
       return false;
     }
   }
+
   
   void enemyCheck() {//can't move over dead enemy
-    if (loc.dist(enemyArray[0].loc)<sz/2) {
+         for(int i = 0; i < enemyArray.length; i++) {
+    if (loc.dist(enemyArray[i].loc)<sz/2) {
       loc.x=loc.x-5;
     }
+  }
   }
   void platformCheck() {
     if (loc.x < p.loc.x || loc.x > p.loc.x + (p.w)) {

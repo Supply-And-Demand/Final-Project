@@ -107,7 +107,9 @@ p2.loc.y=p.loc.y+random(0,5);
       if (c.edge()) {
         weaps.remove(i);
       }
-      if (c.shootEnemy()) {
+      //////
+             for(int j = 0; j < enemyArray.length; j++) {
+      if (c.shootEnemy(j)) {
         weaps.remove(i);
         enemyLife--;
         if (enemyLife==0) {
@@ -115,37 +117,36 @@ p2.loc.y=p.loc.y+random(0,5);
         }
       }
     }
+    }
     /////////////enemy life///////////////////
     ///enemy////
        for(int i = 0; i < enemyArray.length; i++) {
  
-//    if (enemyLife==2) {
-//      enemyArray[i].display();
-//      enemyArray[i].move();
-//      enemyArray[i].checkForCharacter(c);
-//      if (enemyArray[i].hit()) {
-//        charLife=charLife-1;
-//      }
-//    }
-          enemyArray[i].display();
+    if (enemyLife==2) {
+      enemyArray[i].display();
       enemyArray[i].move();
-       }//for
+      enemyArray[i].checkForCharacter(c);
+      if (enemyArray[i].hit()) {
+        charLife=charLife-1;
+      }
+    }
+    
+    if (enemyLife==1) {
+      enemyArray[i].display();
+      enemyArray[i].move();
+      enemyArray[i].checkForCharacter(c);
+  if (enemyArray[i].hit()) {
+        charLife=charLife-1;
+      }
+    }
 
-//    if (enemyLife==1) {
-//      e.display();
-//      e.move();
-//      e.checkForCharacter(c);
-//      if (e.hit()) {
-//        charLife=charLife-1;
-//      }
-//    }
-//
-//    if (enemyLife<1) {
-//      e.dead();
+    if (enemyLife<1) {
+      enemyArray[i].dead();
 //      Enemy e2= new Enemy (width, height-60);
 //      e2.display();
 //      e2.move();
-//    }
+    }
+           }//for
 
     ///////////////////////////////////////////////////////////
     ////////////////character life////////////////////
