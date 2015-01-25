@@ -36,6 +36,7 @@ class character {
     xinc=.1;
     yoff=0;
     yinc=.1;
+    
   }
   character(float  x, float y, float tempVel, float offset, String p) { //left or right
 

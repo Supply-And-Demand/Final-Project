@@ -1,9 +1,10 @@
 ArrayList<character> weaps= new ArrayList<character>();
-ArrayList<Enemy> ens= new ArrayList<Enemy>();
+//ArrayList<Enemy> ens= new ArrayList<Enemy>();
+Enemy [] enemyArray= new Enemy [3];
 //ArrayList<platform> plats= new ArrayList<platform>();
 //platform [] p= new platform [2];
 boolean space;
-int charLife, ammo, enemyLife, game, coins, sidekick, weospeed, shirt;
+int charLife, ammo, enemyLife, game, coins, sidekick, weospeed, shirt, level;
 PImage heart, failed, title, points;
 import ddf.minim.*;
 AudioPlayer player;
@@ -38,6 +39,7 @@ void setup() {
   sidekick = 0;
   weospeed = 3;
   shirt = 0;
+  level=0;
 }
 
 void draw() {
@@ -70,7 +72,9 @@ void draw() {
     if (c.pass()) {
       c.loc.x=0;
       p.loc.x= random(50, (width/2)-1); 
-      p2.loc.x= random(width/2, width);
+      p2.loc.x= random(width/2, width-p2.h);
+      level= level+1;
+      println(level);
     }
     ///market///
     if (keyPressed == true) {
@@ -232,23 +236,21 @@ void mouseClicked() {
 void keyPressed() {
   if (key=='e') {
     if (weaps.size() <ammo) {
-      if(c.loc.y<p.loc.y-p.h/2){
-          weaps.add(new character (c.loc.x, height-100, weospeed, 50, "PencilRight"));
+      if (c.loc.y<p.loc.y-p.h/2) {
+        weaps.add(new character (c.loc.x, height-100, weospeed, 50, "PencilRight"));
+      } else {
+        weaps.add(new character (c.loc.x, height-40, weospeed, 50, "PencilRight"));
       }
-      else{
-      weaps.add(new character (c.loc.x, height-40, weospeed, 50, "PencilRight"));
     }
-  }
   }
   if (key=='q') {
     if (weaps.size() <ammo) {
- if(c.loc.y<p.loc.y-p.h/2){
-          weaps.add(new character (c.loc.x, height-100, -weospeed, -50, "PencilLeft"));
+      if (c.loc.y<p.loc.y-p.h/2) {
+        weaps.add(new character (c.loc.x, height-100, -weospeed, -50, "PencilLeft"));
+      } else {
+        weaps.add(new character (c.loc.x, height-40, -weospeed, -50, "PencilLeft"));
       }
-      else{
-      weaps.add(new character (c.loc.x, height-40, -weospeed, -50, "PencilLeft"));
     }
-  }
   }
   if (key == 'l') {
     player.close();
