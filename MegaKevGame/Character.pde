@@ -54,7 +54,7 @@ class character {
     stand= loadImage("MegaKevStandRed.png");
     pencil= loadImage(p+".png");
     heart= loadImage("Heart.png");
-    locWeapon= new PVector (loc.x+offset, height-40);
+    locWeapon= new PVector (loc.x+offset, y);
     velWeapon= new PVector(tempVel, 0);
 
     xoff=0;

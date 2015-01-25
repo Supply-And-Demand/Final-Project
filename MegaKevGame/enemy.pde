@@ -9,7 +9,7 @@ class Enemy {
   Enemy(float x, float y) {
     loc= new PVector (x, y);
     vel= new PVector(-1, 0);
-    locBullet= new PVector (loc.x-10, y);
+    locBullet= new PVector (x, y);
     velBullet= new PVector(-3, 0);
     bullet= loadImage("bullet.png");
 

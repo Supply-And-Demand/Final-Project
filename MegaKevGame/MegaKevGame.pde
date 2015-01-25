@@ -232,8 +232,13 @@ void mouseClicked() {
 void keyPressed() {
   if (key=='e') {
     if (weaps.size() <ammo) {
-      weaps.add(new character (c.loc.x, c.loc.y, weospeed, 50, "PencilRight"));
+      if(c.loc.y<p.loc.y-p.h/2){
+          weaps.add(new character (c.loc.x, height-100, weospeed, 50, "PencilRight"));
+      }
+      else{
+      weaps.add(new character (c.loc.x, height-40, weospeed, 50, "PencilRight"));
     }
+  }
   }
   if (key=='q') {
     if (weaps.size() <ammo) {
