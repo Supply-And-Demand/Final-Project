@@ -242,8 +242,13 @@ void keyPressed() {
   }
   if (key=='q') {
     if (weaps.size() <ammo) {
-      weaps.add(new character (c.loc.x, c.loc.y, -weospeed, -50, "PencilLeft"));
+ if(c.loc.y<p.loc.y-p.h/2){
+          weaps.add(new character (c.loc.x, height-100, -weospeed, -50, "PencilLeft"));
+      }
+      else{
+      weaps.add(new character (c.loc.x, height-40, -weospeed, -50, "PencilLeft"));
     }
+  }
   }
   if (key == 'l') {
     player.close();
