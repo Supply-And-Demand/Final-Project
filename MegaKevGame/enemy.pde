@@ -67,7 +67,7 @@ class Enemy {
 
   void checkForCharacter(character c) {
     if (loc.dist(c.loc)<500) {
-      e.attack();
+      enemyArray[0].attack();
     }
   }
 
@@ -75,4 +75,3 @@ class Enemy {
   //     //.remove 
   //    }
 }
-

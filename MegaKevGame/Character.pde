@@ -177,14 +177,15 @@ class character {
     }
   }
   boolean shootEnemy() {//detects shot
-    if (locWeapon.dist(e.loc)<sz/2) {
+    if (locWeapon.dist(enemyArray[0].loc)<sz/2) {
       return true;
     } else {
       return false;
     }
   }
+  
   void enemyCheck() {//can't move over dead enemy
-    if (loc.dist(e.loc)<sz/2) {
+    if (loc.dist(enemyArray[0].loc)<sz/2) {
       loc.x=loc.x-5;
     }
   }
@@ -278,4 +279,3 @@ class character {
       }
     }
   }
-

@@ -10,7 +10,7 @@ import ddf.minim.*;
 AudioPlayer player;
 Minim minim;
 Market market;
-Enemy e;
+//Enemy e;
 character c;
 character w;
 platform p, p2;
@@ -25,7 +25,7 @@ void setup() {
   points= loadImage("pointsystem.png");
   minim = new Minim(this);
   player = minim.loadFile("Song.wav", 2048);
-  e= new Enemy(random(350, width), height-60);
+//  e= new Enemy(random(350, width), height-60);
   c= new character (random(0, 1), height-60);
   w= new character(random(0, 1), height-60);//weapon
   p= new platform(width/4, height-80);//platform
@@ -39,7 +39,11 @@ void setup() {
   sidekick = 0;
   weospeed = 3;
   shirt = 0;
-  level=0;
+  level=1;
+   for(int i = 0; i <enemyArray.length; i++) {
+  enemyArray[i]  = new Enemy(random(width/2,width), height-60);
+ }
+
 }
 
 void draw() {
@@ -51,6 +55,7 @@ void draw() {
     fill(255, 0, 0);
     textSize(24);
     text(coins, 112, 101);
+    text("Level:" + level, width-100, 50);
     ///character///
 
     p.display();
@@ -71,10 +76,11 @@ void draw() {
 
     if (c.pass()) {
       c.loc.x=0;
-      p.loc.x= random(50, (width/2)-1); 
-      p2.loc.x= random(width/2, width-p2.h);
+      p.loc.x= random(50, (width/2)-p.w); 
+//      p2.loc.x= random(width/2, width-p2.w);
+p2.loc.x=p.loc.x+random(300,500);//000000
+p2.loc.y=p.loc.y+random(0,5);
       level= level+1;
-      println(level);
     }
     ///market///
     if (keyPressed == true) {
@@ -111,30 +117,35 @@ void draw() {
     }
     /////////////enemy life///////////////////
     ///enemy////
-    if (enemyLife==2) {
-      e.display();
-      e.move();
-      e.checkForCharacter(c);
-      if (e.hit()) {
-        charLife=charLife-1;
-      }
-    }
+       for(int i = 0; i < enemyArray.length; i++) {
+ 
+//    if (enemyLife==2) {
+//      enemyArray[i].display();
+//      enemyArray[i].move();
+//      enemyArray[i].checkForCharacter(c);
+//      if (enemyArray[i].hit()) {
+//        charLife=charLife-1;
+//      }
+//    }
+          enemyArray[i].display();
+      enemyArray[i].move();
+       }//for
 
-    if (enemyLife==1) {
-      e.display();
-      e.move();
-      e.checkForCharacter(c);
-      if (e.hit()) {
-        charLife=charLife-1;
-      }
-    }
-
-    if (enemyLife<1) {
-      e.dead();
-      Enemy e2= new Enemy (width, height-60);
-      e2.display();
-      e2.move();
-    }
+//    if (enemyLife==1) {
+//      e.display();
+//      e.move();
+//      e.checkForCharacter(c);
+//      if (e.hit()) {
+//        charLife=charLife-1;
+//      }
+//    }
+//
+//    if (enemyLife<1) {
+//      e.dead();
+//      Enemy e2= new Enemy (width, height-60);
+//      e2.display();
+//      e2.move();
+//    }
 
     ///////////////////////////////////////////////////////////
     ////////////////character life////////////////////
@@ -259,4 +270,3 @@ void keyPressed() {
     player.rewind();
   }
 }
-
