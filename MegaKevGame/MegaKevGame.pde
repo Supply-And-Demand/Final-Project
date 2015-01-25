@@ -26,12 +26,12 @@ void setup() {
   points= loadImage("pointsystem.png");
   minim = new Minim(this);
   player = minim.loadFile("Song.wav", 2048);
-//  e= new Enemy(random(350, width), height-60);
+  //  e= new Enemy(random(350, width), height-60);
   c= new character (random(0, 1), height-60);
   w= new character(random(0, 1), height-60);//weapon
   p= new platform(width/4, height-80);//platform
   p2= new platform(width/2, height-100);
-  b= new boss(width/2,height/2);
+  b= new boss(width/2, height/2);
   market = new Market();
   space = false;
   ammo=1;
@@ -42,10 +42,9 @@ void setup() {
   weospeed = 3;
   shirt = 0;
   level=1;
-   for(int i = 0; i <enemyArray.length; i++) {
-  enemyArray[i]  = new Enemy(random(width/2,width), height-60);
- }
-
+  for (int i = 0; i <enemyArray.length; i++) {
+    enemyArray[i]  = new Enemy(random(width/2, width), height-60);
+  }
 }
 
 void draw() {
@@ -79,9 +78,9 @@ void draw() {
     if (c.pass()) {
       c.loc.x=0;
       p.loc.x= random(50, (width/2)-p.w); 
-//      p2.loc.x= random(width/2, width-p2.w);
-p2.loc.x=p.loc.x+random(300,500);//000000
-p2.loc.y=p.loc.y+random(0,5);
+      //      p2.loc.x= random(width/2, width-p2.w);
+      p2.loc.x=p.loc.x+random(300, 500);//000000
+      p2.loc.y=p.loc.y+random(0, 5);
       level= level+1;
     }
     ///market///
@@ -110,45 +109,45 @@ p2.loc.y=p.loc.y+random(0,5);
         weaps.remove(i);
       }
       //////
-             for(int j = 0; j < enemyArray.length; j++) {
-      if (c.shootEnemy(j)) {
-        weaps.remove(i);
-        enemyLife--;
-        if (enemyLife==0) {
-          coins+=10;
+      for (int j = 0; j < enemyArray.length; j++) {
+        if (c.shootEnemy(j)) {
+          weaps.remove(i);
+          enemyLife--;
+          if (enemyLife==0) {
+            coins+=10;
+          }
         }
       }
     }
-    }
     /////////////enemy life///////////////////
     ///enemy////
-       for(int i = 0; i < enemyArray.length; i++) {
- 
-    if (enemyLife==2) {
-      enemyArray[i].display();
-      enemyArray[i].move();
-      enemyArray[i].checkForCharacter(c);
-      if (enemyArray[i].hit()) {
-        charLife=charLife-1;
-      }
-    }
-    
-    if (enemyLife==1) {
-      enemyArray[i].display();
-      enemyArray[i].move();
-      enemyArray[i].checkForCharacter(c);
-  if (enemyArray[i].hit()) {
-        charLife=charLife-1;
-      }
-    }
+    for (int i = 0; i < enemyArray.length; i++) {
 
-    if (enemyLife<1) {
-      enemyArray[i].dead();
-//      Enemy e2= new Enemy (width, height-60);
-//      e2.display();
-//      e2.move();
-    }
-           }//for
+      if (enemyLife==2) {
+        enemyArray[i].display();
+        enemyArray[i].move();
+        enemyArray[i].checkForCharacter(c);
+        if (enemyArray[i].hit()) {
+          charLife=charLife-1;
+        }
+      }
+
+      if (enemyLife==1) {
+        enemyArray[i].display();
+        enemyArray[i].move();
+        enemyArray[i].checkForCharacter(c);
+        if (enemyArray[i].hit()) {
+          charLife=charLife-1;
+        }
+      }
+
+      if (enemyLife<1) {
+        enemyArray[i].dead();
+        //      Enemy e2= new Enemy (width, height-60);
+        //      e2.display();
+        //      e2.move();
+      }
+    }//for
 
     ///////////////////////////////////////////////////////////
     ////////////////character life////////////////////
@@ -239,14 +238,14 @@ p2.loc.y=p.loc.y+random(0,5);
     ///////////////////////////MARKET UPWARD CAUTION////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////
   } //if statement Game == 1
-  
-  
-  
+
+
+
   /////////////////////////////////////////////////
   /////////////////boss battle/////////////////////
   /////////////////////////////////////////////////
-  if (game== 3){ ///=3?
-       player.play();
+  if (game== 3) { ///=3?
+    player.play();
     background(0, 10, 30);
     image(points, 0, 80);
     fill(255, 0, 0);
@@ -254,17 +253,127 @@ p2.loc.y=p.loc.y+random(0,5);
     text(coins, 112, 101);
     text("Level:" + level, width-100, 50);
     b.display();
-  }
-  
-}
+    c.display(shirt);
+    c.move();
+    c.sidekick(sidekick);
+    c.enemyCheck();
+
+
+    ////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////MARKET BELOW CAUTION/////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////
+    if (space == true) {
+      if (mouseX>=337 && mouseX<=380 && mouseY>=116 && mouseY<=159 && coins > 9) {
+        if (mousePressed == true) {
+          sidekick = 1; 
+          coins-= 10;
+        }
+      }
+      if (mouseX>=337 && mouseX<=380 && mouseY>=159 && mouseY<=202 && coins > 9) {
+        if (mousePressed == true) {
+          sidekick = 2; 
+          coins-= 10;
+        }
+      }
+      if (mouseX>=337 && mouseX<=380 && mouseY>=203 && mouseY<=246 && coins > 9) {
+        if (mousePressed == true) {
+          sidekick = 3; 
+          coins-= 10;
+        }
+      }
+      if (mouseX>=337 && mouseX<=380 && mouseY>=247 && mouseY<=290 && coins > 14) {
+        if (mousePressed == true) {
+          weospeed += 3;
+          coins -= 15;
+        }
+      }
+      if (mouseX>=645 && mouseX<=688 && mouseY>=157 && mouseY<=200 && coins > 4 && charLife < 5) {
+        if (mousePressed == true) {
+          charLife += 1; 
+          coins-= 5;
+        }
+      }
+      if (mouseX>=645 && mouseX<=688 && mouseY>=114 && mouseY<=157  && coins > 14 && charLife < 5) {
+        if (mousePressed == true) {
+          charLife = 5; 
+          coins-= 15;
+        }
+      }
+      if (mouseX>=645 && mouseX<=688 && mouseY>=202 && mouseY<=245  && coins > 99) {
+        if (mousePressed == true) {
+          shirt = 1;
+          coins-= 100;
+        }
+      }
+    }
+    ////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////MARKET UPWARD CAUTION////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////
+
+    ///////////////////////////////////////////////////////////
+    ////////////////character life////////////////////
+    if (charLife==5) {
+      image(heart, 0, 10, 50, 50);
+      image(heart, 50, 10, 50, 50);
+      image(heart, 100, 10, 50, 50);
+      image(heart, 150, 10, 50, 50);
+      image(heart, 200, 10, 50, 50);
+    }  
+    if (charLife==4) {
+
+      image(heart, 0, 10, 50, 50);
+      image(heart, 50, 10, 50, 50);
+      image(heart, 100, 10, 50, 50);
+      image(heart, 150, 10, 50, 50);
+    }  
+    if (charLife==3) {
+      image(heart, 0, 10, 50, 50);
+      image(heart, 50, 10, 50, 50);
+      image(heart, 100, 10, 50, 50);
+    }  
+    if (charLife==2) {
+      image(heart, 0, 10, 50, 50);
+      image(heart, 50, 10, 50, 50);
+    }
+    if (charLife==1) {
+      image(heart, 0, 10, 50, 50);
+    }
+
+    if (charLife==0) {
+      image(failed, 0, 0, width, height);
+      fill(0);
+      textSize(30);
+      text("You have failed your classes, please close and", width/3.6, height/2) ;
+      text("reopen if you would like to try again", width/3.2, height/1.8) ;
+      noLoop();
+    }
+
+    //    ////pencil & boss sheet////
+    //    for (int i=weaps.size ()-1; i>=0; i--) {
+    //      character c= weaps.get(i);
+    //      c.weapDisplay();
+    //      c.weapMove();
+    //
+    //      if (c.edge()) {
+    //        weaps.remove(i);
+    //      }
+    //      if (c.shootBoss()) {
+    //        weaps.remove(i);
+    //        bossLife--;
+    //        if (enemyLife==0) {
+    //          coins+=10;
+    //        }
+  }//end of game 3
+}///end of void draw
 void mouseClicked() {
   if (mouseX>(width/2+100) && mouseX<(width/2-100) && mouseY>(height/2) && mouseY<(height-200)) {
     game=1;
   }
-  if(mouseX>(width/2+100) && mouseX<(width/2-100) && mouseY<(height-200) && mouseY<(height-100)){
-   game=2; 
+  if (mouseX>(width/2+100) && mouseX<(width/2-100) && mouseY<(height-200) && mouseY<(height-100)) {
+    game=2;
   }
-  if(mouseX>(width/2)){
+  if (mouseX>(width/2)) {
     game=3;
   }
 }
@@ -296,3 +405,4 @@ void keyPressed() {
     player.rewind();
   }
 }
+
