@@ -14,6 +14,7 @@ Market market;
 character c;
 character w;
 platform p, p2;
+boss b;
 
 
 void setup() {
@@ -30,6 +31,7 @@ void setup() {
   w= new character(random(0, 1), height-60);//weapon
   p= new platform(width/4, height-80);//platform
   p2= new platform(width/2, height-100);
+  b= new boss(width/2,height/2);
   market = new Market();
   space = false;
   ammo=1;
@@ -237,10 +239,33 @@ p2.loc.y=p.loc.y+random(0,5);
     ///////////////////////////MARKET UPWARD CAUTION////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////
   } //if statement Game == 1
+  
+  
+  
+  /////////////////////////////////////////////////
+  /////////////////boss battle/////////////////////
+  /////////////////////////////////////////////////
+  if (game== 3){ ///=3?
+       player.play();
+    background(0, 10, 30);
+    image(points, 0, 80);
+    fill(255, 0, 0);
+    textSize(24);
+    text(coins, 112, 101);
+    text("Level:" + level, width-100, 50);
+    b.display();
+  }
+  
 }
 void mouseClicked() {
-  if (mouseX>0 && mouseX<width) {
+  if (mouseX>(width/2+100) && mouseX<(width/2-100) && mouseY>(height/2) && mouseY<(height-200)) {
     game=1;
+  }
+  if(mouseX>(width/2+100) && mouseX<(width/2-100) && mouseY<(height-200) && mouseY<(height-100)){
+   game=2; 
+  }
+  if(mouseX>(width/2)){
+    game=3;
   }
 }
 
