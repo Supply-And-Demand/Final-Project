@@ -4,7 +4,7 @@ Enemy [] enemyArray= new Enemy [3];
 //ArrayList<platform> plats= new ArrayList<platform>();
 //platform [] p= new platform [2];
 boolean space;
-int charLife, ammo, enemyLife, game, coins, sidekick, weospeed, shirt, level;
+int charLife, ammo, enemyLife, bossLife, game, coins, sidekick, weospeed, shirt, level;
 PImage heart, failed, title, points;
 import ddf.minim.*;
 AudioPlayer player;
@@ -15,8 +15,6 @@ character c;
 character w;
 platform p, p2;
 boss b;
-
-
 void setup() {
   size(1200, 700);
   charLife=5;
@@ -31,11 +29,12 @@ void setup() {
   w= new character(random(0, 1), height-60);//weapon
   p= new platform(width/4, height-80);//platform
   p2= new platform(width/2, height-100);
-  b= new boss(width/2, height/2);
+  b= new boss(width/2, height-200);
   market = new Market();
   space = false;
   ammo=1;
   enemyLife=2;
+  bossLife= 50;
   game=0;
   coins = 0;
   sidekick = 0;
@@ -349,21 +348,23 @@ void draw() {
       noLoop();
     }
 
-    //    ////pencil & boss sheet////
-    //    for (int i=weaps.size ()-1; i>=0; i--) {
-    //      character c= weaps.get(i);
-    //      c.weapDisplay();
-    //      c.weapMove();
-    //
-    //      if (c.edge()) {
-    //        weaps.remove(i);
-    //      }
-    //      if (c.shootBoss()) {
-    //        weaps.remove(i);
-    //        bossLife--;
-    //        if (enemyLife==0) {
-    //          coins+=10;
-    //        }
+    ////pencil & boss sheet////
+    for (int i=weaps.size ()-1; i>=0; i--) {
+      character c= weaps.get(i);
+      c.weapDisplay();
+      c.weapMove();
+
+      if (c.edge()) {
+        weaps.remove(i);
+      }
+      if (c.shootBoss()) {
+        weaps.remove(i);
+        bossLife--;
+      }
+      if (enemyLife==0) {
+        coins+=10;
+      }
+    }
   }//end of game 3
 }///end of void draw
 void mouseClicked() {

@@ -10,6 +10,7 @@ class boss {
 void display(){
  image(boss, loc.x, loc.y);
 }
+}
   
   
 

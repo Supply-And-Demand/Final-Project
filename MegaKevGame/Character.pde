@@ -184,6 +184,15 @@ class character {
       return false;
     }
   }
+  
+    boolean shootBoss() {//detects shot
+    if (locWeapon.dist(b.loc)<sz/2) {
+      return true;
+    } 
+    else {
+      return false;
+    }
+  }
 
   
   void enemyCheck() {//can't move over dead enemy
