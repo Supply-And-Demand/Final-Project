@@ -6,7 +6,7 @@ Enemy [] enemyArray= new Enemy [3];
 //platform [] p= new platform [2];
 boolean space;
 int charLife, ammo, enemyLife, bossLife, game, coins, sidekick, weospeed, shirt, level, maxBombs;
-PImage heart, failed, title, points;
+PImage heart, failed, title, points, menu;
 import ddf.minim.*;
 AudioPlayer player;
 Minim minim;
@@ -25,6 +25,7 @@ void setup() {
   heart= loadImage("Heart.png");
   title= loadImage("TitleScreen.png");
   points= loadImage("pointsystem.png");
+  menu= loadImage("menu.png");
   minim = new Minim(this);
   player = minim.loadFile("Song.wav", 2048);
   //  e= new Enemy(random(350, width), height-60);
@@ -39,12 +40,12 @@ void setup() {
   enemyLife=2;
   bossLife= 50;
   game=0;
-  coins = 0;
   sidekick = 0;
   weospeed = 3;
   shirt = 0;
   level=1;
   maxBombs= 100;
+  coins = 0;
   for (int i = 0; i <enemyArray.length; i++) {
     enemyArray[i]  = new Enemy(random(width/2, width), height-60);
   }
@@ -52,7 +53,31 @@ void setup() {
 
 void draw() {
   image(title, 0, 0, 1200, 700);
-  if (game==1) {
+  if (game == 5) {
+    image(menu, 0, 0, 1200, 700);
+    if (mouseX > 118 && mouseX < 368 && mouseY >75 && mouseY <325) {
+      fill(0, 160);
+      rect(118, 75, 260, 250);
+      if (mousePressed == true) {
+        game = 1;
+      }
+    }
+    if (mouseX > 468 && mouseX < 728 && mouseY >75 && mouseY <325) {
+      fill(0, 160);
+      rect(468, 75, 260, 250);
+      if (mousePressed == true) {
+        game = 2;
+      }
+    }
+    if (mouseX > 811 && mouseX < 1071 && mouseY >75 && mouseY <325) {
+      fill(0, 160);
+      rect(811, 75, 260, 262);
+      if (mousePressed == true) {
+        game = 3;
+      }
+    }
+  }
+  if (game>0 && game<3) {
     player.play();
     background(0, 10, 30);
     image(points, 0, 80);
@@ -61,7 +86,9 @@ void draw() {
     text(coins, 112, 101);
     text("Level:" + level, width-100, 50);
     ///character///
-
+    if (game == 2) {
+      coins = 999;
+    }
     p.display();
     p2.display();
     c.display(shirt);
@@ -255,7 +282,7 @@ void draw() {
     text(coins, 112, 101);
     text("Level:" + level, width-100, 50);
     if (fbombs.size() <maxBombs) {
-      fbombs.add(new boss (random(500,width), 500));
+      fbombs.add(new boss (random(500, width), 500));
     }
 
     for (int i=fbombs.size ()-1; i>=0; i--) {//redraws the particles 
@@ -386,14 +413,8 @@ void draw() {
   }//end of game 3
 }///end of void draw
 void mouseClicked() {
-  if (mouseX<width/2) {
-    game=1;
-  }
-  if (mouseX>(width/2+100) && mouseX<(width/2-100) && mouseY<(height-200) && mouseY<(height-100)) {
-    game=2;
-  }
-  if (mouseX>(width/2)) {
-    game=3;
+  if (game == 0) {
+    game = 5;
   }
 }
 
@@ -424,3 +445,4 @@ void keyPressed() {
     player.rewind();
   }
 }
+
