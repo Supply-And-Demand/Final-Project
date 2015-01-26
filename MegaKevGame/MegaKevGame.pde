@@ -158,11 +158,13 @@ void draw() {
 
       }
             else {
-        enemyArray[i].display();
-        enemyArray[i].move();
-        enemyArray[i].checkForCharacter(c);
+       enemyArray[i].display();
+       enemyArray[i].move();
+       enemyArray[i].checkForCharacter(c);
         if (enemyArray[i].hit()) {
-          charLife=charLife-1;
+      charLife=charLife-1;
+      enemyArray[i].locBullet.x=enemyArray[i].loc.x;
+      enemyArray[i].velBullet.x=-1;
         }
       }
     }//for
