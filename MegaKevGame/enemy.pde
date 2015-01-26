@@ -3,8 +3,7 @@ class Enemy {
   float d, t;
   PImage bullet, Enemy1, Enemy2, Enemy3, Enemy4, EnemyDead;
   float imagerunning;
-
-
+  int Life;
 
   Enemy(float x, float y) {
     loc= new PVector (x, y);
@@ -12,7 +11,6 @@ class Enemy {
     locBullet= new PVector (x, y);
     velBullet= new PVector(-3, 0);
     bullet= loadImage("bullet.png");
-
     Enemy1= loadImage("Enemy1.png");
     Enemy2= loadImage("Enemy2.png"); 
     Enemy3= loadImage("Enemy3.png");
@@ -21,6 +19,7 @@ class Enemy {
     imagerunning=1;
     d=50;
     t=1;
+    Life=2;
   }
 
   void display() {

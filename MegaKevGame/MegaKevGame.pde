@@ -5,7 +5,7 @@ Enemy [] enemyArray= new Enemy [3];
 //ArrayList<platform> plats= new ArrayList<platform>();
 //platform [] p= new platform [2];
 boolean space;
-int charLife, ammo, enemyLife, bossLife, game, coins, sidekick, weospeed, shirt, level, maxBombs;
+int charLife, ammo, bossLife, game, coins, sidekick, weospeed, shirt, level, maxBombs;
 PImage heart, failed, title, points, menu;
 import ddf.minim.*;
 AudioPlayer player;
@@ -37,7 +37,6 @@ void setup() {
   market = new Market();
   space = false;
   ammo=1;
-  enemyLife=2;
   bossLife= 50;
   game=0;
   sidekick = 0;
@@ -142,8 +141,8 @@ void draw() {
       for (int j = 0; j < enemyArray.length; j++) {
         if (c.shootEnemy(j)) {
           weaps.remove(i);
-          enemyLife--;
-          if (enemyLife==0) {
+          enemyArray[j].Life--;
+          if (enemyArray[i].Life==0) {
             coins+=10;
           }
         }
@@ -153,29 +152,17 @@ void draw() {
     ///enemy////
     for (int i = 0; i < enemyArray.length; i++) {
 
-      if (enemyLife==2) {
-        enemyArray[i].display();
-        enemyArray[i].move();
-        enemyArray[i].checkForCharacter(c);
-        if (enemyArray[i].hit()) {
-          charLife=charLife-1;
-        }
-      }
-
-      if (enemyLife==1) {
-        enemyArray[i].display();
-        enemyArray[i].move();
-        enemyArray[i].checkForCharacter(c);
-        if (enemyArray[i].hit()) {
-          charLife=charLife-1;
-        }
-      }
-
-      if (enemyLife<1) {
+      if (enemyArray[i].Life<1) {
         enemyArray[i].dead();
-        //      Enemy e2= new Enemy (width, height-60);
-        //      e2.display();
-        //      e2.move();
+
+      }
+            else {
+        enemyArray[i].display();
+        enemyArray[i].move();
+        enemyArray[i].checkForCharacter(c);
+        if (enemyArray[i].hit()) {
+          charLife=charLife-1;
+        }
       }
     }//for
 
