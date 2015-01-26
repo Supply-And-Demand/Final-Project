@@ -19,9 +19,10 @@ class boss {
 
   void BulletMove() {
     locBullet.add(velBullet);
-    //    if (locBullet.x<0) {
-    //      locBullet.x=loc.x;
-    //    }
+        if (locBullet.x<0||locBullet.x>width||locBullet.y>height || locBullet.y<0) {
+          locBullet.x=700;
+          locBullet.y= 400;
+       }
   }
     void BulletDisplay() {//displays particles as ellipses
 //    fill(pcolor, psaturation, 100, ptransparency); 
@@ -31,13 +32,16 @@ class boss {
     
   }
     boolean hit() {
-    if (locBullet.x-35/2<c.loc.x+30 && locBullet.y+35/2>c.loc.y-30){//if fbomb hits him && 30 bc 60/2
+    if (locBullet.y+35/2>c.loc.y  ){//if fbomb hits him && 30 bc 60/2
+    println("no");
+    locBullet.x=loc.x;
       return true;
     } else {
       return false;
     }
   }
 }
-  
-  
+
+  //&& locBullet.y+35/2>c.loc.y 
+  //locBullet.x-35/2<c.loc.x+30  
 

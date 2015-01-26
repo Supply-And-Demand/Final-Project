@@ -282,18 +282,23 @@ void draw() {
     text(coins, 112, 101);
     text("Level:" + level, width-100, 50);
     if (fbombs.size() <maxBombs) {
-      fbombs.add(new boss (random(500, width), 550));
+      fbombs.add(new boss (700, 400));
     }
 
     for (int i=fbombs.size ()-1; i>=0; i--) {//redraws the particles 
       boss f = fbombs.get(i);
-
+    if (bossLife==50) {
       f.BulletMove();
       f.BulletDisplay();
-          if (f.hit()) {
-            println("no");
-      charLife=charLife-1;
-    }
+//          if (f.hit()) {
+//      charLife--;
+//    }
+      }
+//      f.BulletMove();
+//      f.BulletDisplay();
+//          if (f.hit()) {
+//      charLife=charLife-1;
+//    }
     }
     player.play();
     b.display();
@@ -304,6 +309,8 @@ void draw() {
 
 
     /////enemy shoot/////
+
+
 
 
 
