@@ -164,7 +164,7 @@ void draw() {
         if (enemyArray[i].hit()) {
       charLife=charLife-1;
       enemyArray[i].locBullet.x=enemyArray[i].loc.x;
-      enemyArray[i].velBullet.x=-1;
+      enemyArray[i].velBullet.x=-2;
         }
       }
     }//for

@@ -9,7 +9,7 @@ class Enemy {
     loc= new PVector (x, y);
     vel= new PVector(-1, 0);
     locBullet= new PVector (x, y);
-    velBullet= new PVector(-3, 0);
+    velBullet= new PVector(-2, 0);
     bullet= loadImage("bullet.png");
     Enemy1= loadImage("Enemy1.png");
     Enemy2= loadImage("Enemy2.png"); 
@@ -49,7 +49,7 @@ class Enemy {
     locBullet.add(velBullet);
     if (locBullet.x<0) {
       locBullet.x=loc.x;
-      velBullet.x=-1;
+      velBullet.x=-2;
     }
   }
 
