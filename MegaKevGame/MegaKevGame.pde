@@ -1,10 +1,11 @@
 ArrayList<character> weaps= new ArrayList<character>();
+ArrayList<boss> fbombs= new ArrayList<boss>();
 //ArrayList<Enemy> ens= new ArrayList<Enemy>();
 Enemy [] enemyArray= new Enemy [3];
 //ArrayList<platform> plats= new ArrayList<platform>();
 //platform [] p= new platform [2];
 boolean space;
-int charLife, ammo, enemyLife, bossLife, game, coins, sidekick, weospeed, shirt, level;
+int charLife, ammo, enemyLife, bossLife, game, coins, sidekick, weospeed, shirt, level, maxBombs;
 PImage heart, failed, title, points;
 import ddf.minim.*;
 AudioPlayer player;
@@ -15,6 +16,8 @@ character c;
 character w;
 platform p, p2;
 boss b;
+
+
 void setup() {
   size(1200, 700);
   charLife=5;
@@ -41,6 +44,7 @@ void setup() {
   weospeed = 3;
   shirt = 0;
   level=1;
+  maxBombs= 100;
   for (int i = 0; i <enemyArray.length; i++) {
     enemyArray[i]  = new Enemy(random(width/2, width), height-60);
   }
@@ -244,18 +248,32 @@ void draw() {
   /////////////////boss battle/////////////////////
   /////////////////////////////////////////////////
   if (game== 3) { ///=3?
-    player.play();
     background(0, 10, 30);
     image(points, 0, 80);
     fill(255, 0, 0);
     textSize(24);
     text(coins, 112, 101);
     text("Level:" + level, width-100, 50);
+    if (fbombs.size() <maxBombs) {
+      fbombs.add(new boss (random(500,width), 500));
+    }
+
+    for (int i=fbombs.size ()-1; i>=0; i--) {//redraws the particles 
+      boss f = fbombs.get(i);
+
+      f.BulletMove();
+      f.BulletDisplay();
+    }
+    player.play();
     b.display();
     c.display(shirt);
     c.move();
     c.sidekick(sidekick);
     c.enemyCheck();
+
+
+    /////enemy shoot/////
+
 
 
     ////////////////////////////////////////////////////////////////////////////////
@@ -361,14 +379,14 @@ void draw() {
         weaps.remove(i);
         bossLife--;
       }
-      if (enemyLife==0) {
+      if (bossLife==0) {
         coins+=10;
       }
     }
   }//end of game 3
 }///end of void draw
 void mouseClicked() {
-  if (mouseX>(width/2+100) && mouseX<(width/2-100) && mouseY>(height/2) && mouseY<(height-200)) {
+  if (mouseX<width/2) {
     game=1;
   }
   if (mouseX>(width/2+100) && mouseX<(width/2-100) && mouseY<(height-200) && mouseY<(height-100)) {
@@ -406,4 +424,3 @@ void keyPressed() {
     player.rewind();
   }
 }
-

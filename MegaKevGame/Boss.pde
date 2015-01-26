@@ -1,15 +1,34 @@
 class boss {
-   PImage boss;
-  PVector loc, vel;
-  
-  boss(float x,float y){
+  PImage boss, bullet;
+  PVector loc, vel, locBullet, velBullet;
+  int d;
+
+  boss(float x, float y) {
     boss=loadImage("Boss.png");
-    loc= new PVector(x,y);
+    bullet= loadImage("bullet.png");
+    loc= new PVector(x, y);
+    locBullet= new PVector (x, y);
+    velBullet= new PVector(random(-3,3), random(-5,0));
+    d=50;
   }
-  
-void display(){
- image(boss, loc.x, loc.y);
-}
+
+  void display() {
+    image(boss, loc.x, loc.y);
+  }
+
+  void BulletMove() {
+    locBullet.add(velBullet);
+    //    if (locBullet.x<0) {
+    //      locBullet.x=loc.x;
+    //    }
+  }
+    void BulletDisplay() {//displays particles as ellipses
+//    fill(pcolor, psaturation, 100, ptransparency); 
+//    ptransparency-=1;//particle becomes less transparent
+    image(bullet, locBullet.x, locBullet.y+100, d-15, d-15); 
+    locBullet.add(velBullet);
+    
+  }
 }
   
   
