@@ -147,7 +147,7 @@ void draw() {
         if (c.shootEnemy(j) && weaps.size() > 0) {
           weaps.remove(i);
           enemyArray[j].Life--;
-          if (enemyArray[i].Life==0) {
+          if (enemyArray[j].Life==0) {
             if (sidekick==1) {
               coins+=10;
             } else { 
