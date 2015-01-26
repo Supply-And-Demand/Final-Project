@@ -282,7 +282,7 @@ void draw() {
     text(coins, 112, 101);
     text("Level:" + level, width-100, 50);
     if (fbombs.size() <maxBombs) {
-      fbombs.add(new boss (random(500, width), 500));
+      fbombs.add(new boss (random(500, width), 550));
     }
 
     for (int i=fbombs.size ()-1; i>=0; i--) {//redraws the particles 
@@ -290,6 +290,10 @@ void draw() {
 
       f.BulletMove();
       f.BulletDisplay();
+          if (f.hit()) {
+            println("no");
+      charLife=charLife-1;
+    }
     }
     player.play();
     b.display();
@@ -407,7 +411,7 @@ void draw() {
         bossLife--;
       }
       if (bossLife==0) {
-        coins+=10;
+        coins+=1000;
       }
     }
   }//end of game 3
