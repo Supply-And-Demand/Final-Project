@@ -161,17 +161,18 @@ void draw() {
     ///enemy////
     for (int j = 0; j < enemyArray.length; j++) {
 
-      if (enemyArray[j].Life<1) {
-        enemyArray[j].dead();
-      } else {
+      if (enemyArray[j].Life>0) {
         enemyArray[j].display();
         enemyArray[j].move();
         enemyArray[j].checkForCharacter(c);
-        if (enemyArray[j].hit()) {
-          charLife=charLife-1;
-          enemyArray[j].locBullet.x=enemyArray[j].loc.x;
-          enemyArray[j].velBullet.x=-2;
-        }
+      
+      if (enemyArray[j].hit()) {
+        charLife=charLife-1;
+        enemyArray[j].locBullet.x=enemyArray[j].loc.x;
+        enemyArray[j].velBullet.x=-2;
+      } }
+      else {
+        enemyArray[j].dead();
       }
     }//for
 
