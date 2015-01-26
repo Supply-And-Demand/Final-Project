@@ -290,9 +290,9 @@ void draw() {
     if (bossLife==50) {
       f.BulletMove();
       f.BulletDisplay();
-//          if (f.hit()) {
-//      charLife--;
-//    }
+          if (f.hit()) {
+      charLife--;
+    }
       }
 //      f.BulletMove();
 //      f.BulletDisplay();
@@ -301,7 +301,7 @@ void draw() {
 //    }
     }
     player.play();
-//    b.display();
+    b.display();
     c.display(shirt);
     c.move();
     c.sidekick(sidekick);
