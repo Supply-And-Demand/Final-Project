@@ -43,8 +43,8 @@ void setup() {
   level=1;
   maxBombs= 40;
   coins = 0;
-  for (int j = 0; j <enemyArray.length; j++) {
-    enemyArray[j]  = new Enemy(random(width/2, width), height-60);
+  for (int i = 0; i <enemyArray.length; i++) {
+    enemyArray[i]  = new Enemy(random(width/2, width), height-60);
   }
 }
 
@@ -112,8 +112,8 @@ void draw() {
       p2.loc.x=p.loc.x+random(300, 500);//000000
       p2.loc.y=p.loc.y+random(0, 5);
       level= level+1;
-      for (int j = 0; j <enemyArray.length; j++) {
-        enemyArray[j]  = new Enemy(random(width/2, width), height-60);
+      for (int i = 0; i <enemyArray.length; i++) {
+        enemyArray[i]  = new Enemy(random(width/2, width), height-60);
       }
       //      level= level+1;
     }
@@ -159,20 +159,19 @@ void draw() {
     }
     /////////////enemy life///////////////////
     ///enemy////
-    for (int j = 0; j < enemyArray.length; j++) {
+    for (int i = 0; i < enemyArray.length; i++) {
 
-      if (enemyArray[j].Life>0) {
-        enemyArray[j].display();
-        enemyArray[j].move();
-        enemyArray[j].checkForCharacter(c);
-      
-      if (enemyArray[j].hit()) {
-        charLife=charLife-1;
-        enemyArray[j].locBullet.x=enemyArray[j].loc.x;
-        enemyArray[j].velBullet.x=-2;
-      } }
-      else {
-        enemyArray[j].dead();
+      if (enemyArray[i].Life<1) {
+        enemyArray[i].dead();
+      } else {
+        enemyArray[i].display();
+        enemyArray[i].move();
+        enemyArray[i].checkForCharacter(c);
+        if (enemyArray[i].hit()) {
+          charLife=charLife-1;
+          enemyArray[i].locBullet.x=enemyArray[i].loc.x;
+          enemyArray[i].velBullet.x=-2;
+        }
       }
     }//for
 
