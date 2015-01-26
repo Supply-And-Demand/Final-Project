@@ -43,8 +43,8 @@ void setup() {
   level=1;
   maxBombs= 40;
   coins = 0;
-  for (int i = 0; i <enemyArray.length; i++) {
-    enemyArray[i]  = new Enemy(random(width/2, width), height-60);
+  for (int j = 0; j <enemyArray.length; j++) {
+    enemyArray[j]  = new Enemy(random(width/2, width), height-60);
   }
 }
 
@@ -112,8 +112,8 @@ void draw() {
       p2.loc.x=p.loc.x+random(300, 500);//000000
       p2.loc.y=p.loc.y+random(0, 5);
       level= level+1;
-      for (int i = 0; i <enemyArray.length; i++) {
-        enemyArray[i]  = new Enemy(random(width/2, width), height-60);
+      for (int j = 0; j <enemyArray.length; j++) {
+        enemyArray[j]  = new Enemy(random(width/2, width), height-60);
       }
       //      level= level+1;
     }
