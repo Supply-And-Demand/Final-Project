@@ -155,25 +155,47 @@ void draw() {
             }
           }
         }
-      }
-    }
-    /////////////enemy life///////////////////
-    ///enemy////
-    for (int i = 0; i < enemyArray.length; i++) {
+      
 
-      if (enemyArray[i].Life<1) {
-        enemyArray[i].dead();
+      if (enemyArray[j].Life<1) {
+        enemyArray[j].dead();
       } else {
-        enemyArray[i].display();
-        enemyArray[i].move();
-        enemyArray[i].checkForCharacter(c);
-        if (enemyArray[i].hit()) {
+        enemyArray[j].display();
+        enemyArray[j].move();
+        enemyArray[j].checkForCharacter(c);
+        if (enemyArray[j].hit()) {
           charLife=charLife-1;
-          enemyArray[i].locBullet.x=enemyArray[i].loc.x;
-          enemyArray[i].velBullet.x=-2;
+          enemyArray[j].locBullet.x=enemyArray[i].loc.x;
+          enemyArray[j].velBullet.x=-2;
         }
       }
-    }//for
+    }
+    }//for j
+  
+  
+  
+  
+  
+  
+  
+  
+    /////////////enemy life///////////////////
+    ///enemy////
+//    for (int i = 0; i < enemyArray.length; i++) {
+//
+//      if (enemyArray[i].Life<1) {
+//        enemyArray[i].dead();
+//      } else {
+//        enemyArray[i].display();
+//        enemyArray[i].move();
+//        enemyArray[i].checkForCharacter(c);
+//        if (enemyArray[i].hit()) {
+//          charLife=charLife-1;
+//          enemyArray[i].locBullet.x=enemyArray[i].loc.x;
+//          enemyArray[i].velBullet.x=-2;
+//        }
+//      }
+//    }//for
 
     ///////////////////////////////////////////////////////////
     ////////////////character life////////////////////
