@@ -75,6 +75,9 @@ void draw() {
     }
   }
   if (game>0 && game<3) {
+    if (shirt == 1) {
+      ammo = 4;
+    }
     player.play();
     background(0, 10, 30);
     image(points, 0, 80);
@@ -108,11 +111,11 @@ void draw() {
       //      p2.loc.x= random(width/2, width-p2.w);
       p2.loc.x=p.loc.x+random(300, 500);//000000
       p2.loc.y=p.loc.y+random(0, 5);
-            level= level+1;
-       for (int i = 0; i <enemyArray.length; i++) {
-    enemyArray[i]  = new Enemy(random(width/2, width), height-60);
-  }
-//      level= level+1;
+      level= level+1;
+      for (int i = 0; i <enemyArray.length; i++) {
+        enemyArray[i]  = new Enemy(random(width/2, width), height-60);
+      }
+      //      level= level+1;
     }
     ///market///
     if (keyPressed == true) {
@@ -145,7 +148,11 @@ void draw() {
           weaps.remove(i);
           enemyArray[j].Life--;
           if (enemyArray[i].Life==0) {
-            coins+=10;
+            if (sidekick==1) {
+              coins+=10;
+            } else { 
+              coins+=5;
+            }
           }
         }
       }
@@ -156,16 +163,14 @@ void draw() {
 
       if (enemyArray[i].Life<1) {
         enemyArray[i].dead();
-
-      }
-            else {
-       enemyArray[i].display();
-       enemyArray[i].move();
-       enemyArray[i].checkForCharacter(c);
+      } else {
+        enemyArray[i].display();
+        enemyArray[i].move();
+        enemyArray[i].checkForCharacter(c);
         if (enemyArray[i].hit()) {
-      charLife=charLife-1;
-      enemyArray[i].locBullet.x=enemyArray[i].loc.x;
-      enemyArray[i].velBullet.x=-2;
+          charLife=charLife-1;
+          enemyArray[i].locBullet.x=enemyArray[i].loc.x;
+          enemyArray[i].velBullet.x=-2;
         }
       }
     }//for
@@ -278,18 +283,18 @@ void draw() {
 
     for (int i=fbombs.size ()-1; i>=0; i--) {//redraws the particles 
       boss f = fbombs.get(i);
-    if (bossLife==50) {
-      f.BulletMove();
-      f.BulletDisplay();
-          if (f.hit()) {
-      charLife--;
-    }
+      if (bossLife==50) {
+        f.BulletMove();
+        f.BulletDisplay();
+        if (f.hit()) {
+          charLife--;
+        }
       }
-//      f.BulletMove();
-//      f.BulletDisplay();
-//          if (f.hit()) {
-//      charLife=charLife-1;
-//    }
+      //      f.BulletMove();
+      //      f.BulletDisplay();
+      //          if (f.hit()) {
+      //      charLife=charLife-1;
+      //    }
     }
     player.play();
     b.display();
@@ -297,8 +302,8 @@ void draw() {
     c.move();
     c.sidekick(sidekick);
     c.enemyCheck();
-    if (c.loc.x > 550){
-    c.loc.x=550;
+    if (c.loc.x > 550) {
+      c.loc.x=550;
     }
 
     /////enemy shoot/////
