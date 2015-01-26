@@ -2,8 +2,6 @@ ArrayList<character> weaps= new ArrayList<character>();
 ArrayList<boss> fbombs= new ArrayList<boss>();
 //ArrayList<Enemy> ens= new ArrayList<Enemy>();
 Enemy [] enemyArray= new Enemy [3];
-//ArrayList<platform> plats= new ArrayList<platform>();
-//platform [] p= new platform [2];
 boolean space;
 int charLife, ammo, bossLife, game, coins, sidekick, weospeed, shirt, level, maxBombs;
 PImage heart, failed, title, points, menu;

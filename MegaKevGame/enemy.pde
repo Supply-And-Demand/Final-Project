@@ -49,12 +49,14 @@ class Enemy {
     locBullet.add(velBullet);
     if (locBullet.x<0) {
       locBullet.x=loc.x;
+      velBullet.x=-1;
     }
   }
 
   boolean hit() {
     if (locBullet.dist(c.loc)<d/2) {//if fbomb hits him
       locBullet.x=loc.x;
+      velBullet.x=-1;
       return true;
     } else {
       return false;
