@@ -44,7 +44,7 @@ void setup() {
   weospeed = 3;
   shirt = 0;
   level=1;
-  maxBombs= 100;
+  maxBombs= 10;
   coins = 0;
   for (int i = 0; i <enemyArray.length; i++) {
     enemyArray[i]  = new Enemy(random(width/2, width), height-60);
@@ -290,9 +290,9 @@ void draw() {
     if (bossLife==50) {
       f.BulletMove();
       f.BulletDisplay();
-//          if (f.hit()) {
-//      charLife--;
-//    }
+          if (f.hit()) {
+      charLife--;
+    }
       }
 //      f.BulletMove();
 //      f.BulletDisplay();

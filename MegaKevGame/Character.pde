@@ -169,7 +169,7 @@ class character {
 
 
   boolean edge() {
-    if (locWeapon.x>loc.x+200||locWeapon.x<0||locWeapon.x<loc.x-200) {
+    if (locWeapon.x>loc.x+200||locWeapon.x<0||locWeapon.x<loc.x-200) {//200 range
       return true;
     } else {
 
