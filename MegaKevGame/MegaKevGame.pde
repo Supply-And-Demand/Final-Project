@@ -306,7 +306,9 @@ void draw() {
     c.move();
     c.sidekick(sidekick);
     c.enemyCheck();
-
+    if (c.loc.x > 550){
+    c.loc.x=550;
+    }
 
     /////enemy shoot/////
 

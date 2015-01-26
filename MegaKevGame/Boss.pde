@@ -14,12 +14,12 @@ class boss {
   }
 
   void display() {
-    image(boss, loc.x, loc.y);
+    image(boss, 600,200,600,500);
   }
 
   void BulletMove() {
     locBullet.add(velBullet);
-        if (locBullet.x<0||locBullet.x>width||locBullet.y>height || locBullet.y<0) {
+        if (locBullet.x<0||locBullet.x>width||locBullet.y>height || locBullet.y<-200) {
           locBullet.x=700;
           locBullet.y= 400;
        }
