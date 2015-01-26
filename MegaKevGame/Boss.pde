@@ -8,7 +8,7 @@ class boss {
     bullet= loadImage("bullet.png");
     loc= new PVector(x, y);
     locBullet= new PVector (x, y);
-    velBullet= new PVector(random(-5, 3), 5);
+    velBullet= new PVector(random(-5, 3), random(-5,5));
 //    velBullet= new PVector(random(-5,5),0);
     d=50;
   }
@@ -19,7 +19,7 @@ class boss {
 
   void BulletMove() {
     locBullet.add(velBullet);
-    if (locBullet.x<0||locBullet.x>width||locBullet.y+35/2>height-100 || locBullet.y<-200) {
+    if (locBullet.x<0||locBullet.x>width||locBullet.y+35/2>height|| locBullet.y<0) {
       println("yes");
       locBullet.x=700;
       locBullet.y= 400;
@@ -28,7 +28,7 @@ class boss {
   void BulletDisplay() {//displays particles as ellipses
     //    fill(pcolor, psaturation, 100, ptransparency); 
     //    ptransparency-=1;//particle becomes less transparent
-    image(bullet, locBullet.x, locBullet.y+100, d-15, d-15); 
+    image(bullet, locBullet.x, locBullet.y, d-15, d-15); 
     locBullet.add(velBullet);
   }
   boolean hit() {
