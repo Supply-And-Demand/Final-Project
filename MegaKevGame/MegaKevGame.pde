@@ -142,7 +142,7 @@ void draw() {
       }
       //////
       for (int j = 0; j < enemyArray.length; j++) {
-        if (c.shootEnemy(j)) {
+        if (c.shootEnemy(j) && weaps.size() > 0) {
           weaps.remove(i);
           enemyArray[j].Life--;
           if (enemyArray[i].Life==0) {
