@@ -8,8 +8,8 @@ class boss {
     bullet= loadImage("bullet.png");
     loc= new PVector(x, y);
     locBullet= new PVector (x, y);
-//    velBullet= new PVector(random(-3, 3), random(-5, 5));
-    velBullet= new PVector(random(-3,0),1);
+    velBullet= new PVector(random(-5, 3), 5);
+//    velBullet= new PVector(random(-5,5),0);
     d=50;
   }
 
@@ -32,7 +32,8 @@ class boss {
     locBullet.add(velBullet);
   }
   boolean hit() {
-    if (locBullet.x-35/2<c.loc.x+30 &&locBullet.y>c.loc.y  ) {//if fbomb hits him && 30 bc 60/2
+//    if (locBullet.x-35/2<c.loc.x+30 && locBullet.y+(35/2)>c.loc.y-30) {//if fbomb hits him && 30 bc 60/2
+    if (locBullet.dist(c.loc)<d/2){
       println("no");
       locBullet.x=700;
       locBullet.y= 400;
