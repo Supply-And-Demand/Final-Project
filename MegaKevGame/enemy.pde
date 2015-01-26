@@ -67,9 +67,11 @@ class Enemy {
   }
 
   void checkForCharacter(character c) {
+      for (int j = 0; j <enemyArray.length; j++){
     if (loc.dist(c.loc)<500) {
-      enemyArray[0].attack();
+      enemyArray[j].attack();
     }
+      }
   }
 
   //    void death{

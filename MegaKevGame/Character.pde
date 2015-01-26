@@ -200,8 +200,8 @@ class character {
 
 
   void enemyCheck() {//can't move over dead enemy
-    for (int i = 0; i < enemyArray.length; i++) {
-      if (loc.dist(enemyArray[i].loc)<sz/2) {
+    for (int j = 0; j < enemyArray.length; j++) {
+      if (loc.dist(enemyArray[j].loc)<sz/2) {
         loc.x=loc.x-5;
       }
     }
