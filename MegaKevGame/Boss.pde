@@ -8,7 +8,7 @@ class boss {
     bullet= loadImage("bullet.png");
     loc= new PVector(x, y);
     locBullet= new PVector (x, y);
-    velBullet= new PVector(random(-5, 3), random(-5,5));
+    velBullet= new PVector(random(-5, -3), random(-5,5));
 //    velBullet= new PVector(random(-5,5),0);
     d=50;
   }
@@ -23,6 +23,7 @@ class boss {
       println("yes");
       locBullet.x=700;
       locBullet.y= 400;
+      velBullet.x=random(-5,-3);
     }
   }
   void BulletDisplay() {//displays particles as ellipses
