@@ -30,7 +30,7 @@ void setup() {
   c= new character (random(0, 1), height-60);
   w= new character(random(0, 1), height-60);//weapon
   p= new platform(width/4, height-80);//platform
-  p2= new platform(width/2, height-100);
+  p2= new platform(width/2, height-80);
   b= new boss(width/2, height-200);
   market = new Market();
   space = false;
@@ -162,6 +162,7 @@ void draw() {
 
       if (enemyArray[i].Life<1) {
         enemyArray[i].dead();
+        enemyArray[i].bsz=0;
       } else {
         enemyArray[i].display();
         enemyArray[i].move();

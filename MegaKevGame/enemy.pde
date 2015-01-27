@@ -1,6 +1,6 @@
 class Enemy {
   PVector loc, locBullet, vel, velBullet;
-  float d, t;
+  float d, t, bsz;
   PImage bullet, Enemy1, Enemy2, Enemy3, Enemy4, EnemyDead;
   float imagerunning;
   int Life;
@@ -18,6 +18,7 @@ class Enemy {
     EnemyDead= loadImage("deadrobot.png");
     imagerunning=1;
     d=50;
+    bsz=35;
     t=1;
     Life=2;
   }
@@ -45,13 +46,17 @@ class Enemy {
     loc.add(vel);
   }
   void attack() {
-    image(bullet, locBullet.x, locBullet.y, d-15, d-15); 
+    image(bullet, locBullet.x, locBullet.y, bsz, bsz); 
     locBullet.add(velBullet);
     if (locBullet.x<0) {
       locBullet.x=loc.x;
       velBullet.x=-2;
     }
   }
+//  void bmove(){
+//    
+//  }
+//  void bdisplay{}
 
   boolean hit() {
     if (locBullet.dist(c.loc)<d/2) {//if fbomb hits him
