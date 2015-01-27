@@ -1,10 +1,20 @@
 class Enemy {
+///////////////////////////////////////////////////
+//                                               //
+//         Declaring variables                   //
+//                                               //
+///////////////////////////////////////////////////
   PVector loc, locBullet, vel, velBullet;
   float d, t, bullsz, imagerunning;
   PImage bullet, Enemy1, Enemy2, Enemy3, Enemy4, EnemyDead;
   int Life;
 
   Enemy(float x, float y) {
+///////////////////////////////////////////////////
+//                                               //
+//        Initializing variables                 //
+//                                               //
+///////////////////////////////////////////////////
     loc= new PVector (x, y);
     vel= new PVector(-1, 0);
     locBullet= new PVector (x, y);
@@ -23,6 +33,11 @@ class Enemy {
   }
 
   void display() {
+///////////////////////////////////////////////////
+//                                               //
+//            Displays enemies                   //
+//                                               //
+///////////////////////////////////////////////////
     t +=1;
     if (t>0 && t<11) {
       image(Enemy1, loc.x, loc.y);
@@ -44,6 +59,11 @@ class Enemy {
     loc.add(vel);
   }
   void attack() {
+///////////////////////////////////////////////////
+//                                               //
+//         Enemies shoot F-bombs                 //
+//                                               //
+///////////////////////////////////////////////////
     image(bullet, locBullet.x-50, locBullet.y, bullsz, bullsz); 
     locBullet.add(velBullet);
     if (locBullet.x<0) {
@@ -53,6 +73,11 @@ class Enemy {
   }
 
   boolean hit() {
+///////////////////////////////////////////////////
+//                                               //
+//          Enemy dies when hit                  //
+//                                               //
+///////////////////////////////////////////////////
     if (locBullet.dist(c.loc)<d/2) {
       return true;
     } else {
@@ -60,10 +85,20 @@ class Enemy {
     }
   }
   void dead() {
+///////////////////////////////////////////////////
+//                                               //
+//               Enemy is dead                   //
+//                                               //
+///////////////////////////////////////////////////
     image(EnemyDead, loc.x, loc.y+20);
   }
 
   void checkForCharacter(character c) {
+///////////////////////////////////////////////////
+//                                               //
+//  Enemy detects when you are near and shoots   //
+//                                               //
+///////////////////////////////////////////////////
     for (int j = 0; j <enemyArray.length; j++) {
       if (loc.dist(c.loc)<500) {
         enemyArray[j].attack();

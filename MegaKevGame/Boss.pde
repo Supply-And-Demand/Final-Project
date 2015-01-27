@@ -1,9 +1,19 @@
 class boss {
+///////////////////////////////////////////////////
+//                                               //
+//         Declaring variables                   //
+//                                               //
+///////////////////////////////////////////////////
   PImage boss, bullet;
   PVector loc, vel, locBullet, velBullet;
   int d;
 
   boss(float x, float y) {
+///////////////////////////////////////////////////
+//                                               //
+//         Initializing variables                //
+//                                               //
+///////////////////////////////////////////////////
     boss=loadImage("Boss.png");
     bullet= loadImage("bullet.png");
     loc= new PVector(x, y);
@@ -17,6 +27,11 @@ class boss {
   }
 
   void BulletMove() {
+///////////////////////////////////////////////////
+//                                               //
+//         Boss weapon discharging               //
+//                                               //
+///////////////////////////////////////////////////
     locBullet.add(velBullet);
     if (locBullet.x<0||locBullet.x>width||locBullet.y+35/2>height|| locBullet.y<0) {
       println("yes");
@@ -25,10 +40,21 @@ class boss {
     }
   }
   void BulletDisplay() {
+///////////////////////////////////////////////////
+//                                               //
+//         Shows enemy projectiles               //
+//                                               //
+///////////////////////////////////////////////////
+
     image(bullet, locBullet.x, locBullet.y, d-15, d-15); 
     locBullet.add(velBullet);
   }
   boolean hit() {
+///////////////////////////////////////////////////
+//                                               //
+//                detects bullet                 //
+//                                               //
+///////////////////////////////////////////////////
     if (locBullet.dist(c.loc)<d/2){
       println("no");
       locBullet.x=700;
@@ -39,4 +65,3 @@ class boss {
     }
   }
 }
-
