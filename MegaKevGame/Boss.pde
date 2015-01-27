@@ -9,7 +9,6 @@ class boss {
     loc= new PVector(x, y);
     locBullet= new PVector (x, y);
     velBullet= new PVector(random(-4, -3), random(0,4));
-//    velBullet= new PVector(random(-5,5),0);
     d=50;
   }
 
@@ -25,14 +24,11 @@ class boss {
       locBullet.y= random(400,600);
     }
   }
-  void BulletDisplay() {//displays particles as ellipses
-    //    fill(pcolor, psaturation, 100, ptransparency); 
-    //    ptransparency-=1;//particle becomes less transparent
+  void BulletDisplay() {
     image(bullet, locBullet.x, locBullet.y, d-15, d-15); 
     locBullet.add(velBullet);
   }
   boolean hit() {
-//    if (locBullet.x-35/2<c.loc.x+30 && locBullet.y+(35/2)>c.loc.y-30) {//if fbomb hits him && 30 bc 60/2
     if (locBullet.dist(c.loc)<d/2){
       println("no");
       locBullet.x=700;
@@ -43,7 +39,4 @@ class boss {
     }
   }
 }
-
-//&& locBullet.y+35/2>c.loc.y 
-//locBullet.x-35/2<c.loc.x+30  
 

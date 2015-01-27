@@ -20,11 +20,10 @@ class Enemy {
     d=50;
     bsz=35;
     t=1;
-    Life=2;
+    Life=3;
   }
 
   void display() {
-
     t +=1;
     if (t>0 && t<11) {
       image(Enemy1, loc.x, loc.y);
@@ -53,15 +52,9 @@ class Enemy {
       velBullet.x=-2;
     }
   }
-//  void bmove(){
-//    
-//  }
-//  void bdisplay{}
 
   boolean hit() {
-    if (locBullet.dist(c.loc)<d/2) {//if fbomb hits him
-//      locBullet.x=loc.x;
-//      velBullet.x=-1;
+    if (locBullet.dist(c.loc)<d/2) {
       return true;
     } else {
       return false;
@@ -72,14 +65,11 @@ class Enemy {
   }
 
   void checkForCharacter(character c) {
-      for (int j = 0; j <enemyArray.length; j++){
-    if (loc.dist(c.loc)<500) {
-      enemyArray[j].attack();
-    }
+    for (int j = 0; j <enemyArray.length; j++) {
+      if (loc.dist(c.loc)<500) {
+        enemyArray[j].attack();
       }
+    }
   }
-
-  //    void death{
-  //     //.remove 
-  //    }
 }
+
