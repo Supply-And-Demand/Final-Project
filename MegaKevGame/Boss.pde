@@ -6,7 +6,7 @@ class boss {
 ///////////////////////////////////////////////////
   PImage boss, bomb;
   PVector loc, vel, locbomb, velbomb;
-  int d;
+  int sz;
 
   boss(float x, float y) {
 ///////////////////////////////////////////////////
@@ -19,7 +19,7 @@ class boss {
     loc= new PVector(x, y);
     locbomb= new PVector (x, y);
     velbomb= new PVector(random(-4, -3), random(0,4));
-    d=50;
+    sz=50;
   }
 
   void display() {
@@ -40,14 +40,8 @@ class boss {
     }
   }
   void bombDisplay() {
-///////////////////////////////////////////////////
-//                                               //
-//         Shows enemy projectiles               //
-//                                               //
-///////////////////////////////////////////////////
 
-    image(bomb, locbomb.x, locbomb.y, d-15, d-15); 
-    locbomb.add(velbomb);
+    image(bomb, locbomb.x, locbomb.y, sz-15, sz-15); 
   }
   boolean hit() {
 ///////////////////////////////////////////////////
@@ -55,7 +49,7 @@ class boss {
 //                detects bullet                 //
 //                                               //
 ///////////////////////////////////////////////////
-    if (locbomb.dist(c.loc)<d/2){
+    if (locbomb.dist(c.loc)<sz/2){
       println("no");
       locbomb.x=700;
       locbomb.y= 400;

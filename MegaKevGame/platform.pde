@@ -4,8 +4,7 @@ class platform {
 //         Declaring variables                   //
 //                                               //
 ///////////////////////////////////////////////////
-  int w;
-  int h;
+  int w, h;
   PImage platform;
   PVector loc;
 

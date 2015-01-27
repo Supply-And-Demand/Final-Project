@@ -4,9 +4,9 @@ class Enemy {
 //         Declaring variables                   //
 //                                               //
 ///////////////////////////////////////////////////
-  PVector loc, locBullet, vel, velBullet;
-  float d, time, bullsz, imagerunning;
-  PImage bullet, Enemy1, Enemy2, Enemy3, Enemy4, EnemyDead;
+  PVector loc, vel, locbullet, velbullet; // bullet as in eemy bombs
+  float sz, bullsz, imagerunning, time;
+  PImage bullet, enemy1, enemy2, enemy3, enemy4, enemyDead;
   int Life;
 
   Enemy(float x, float y) {
@@ -17,16 +17,16 @@ class Enemy {
 ///////////////////////////////////////////////////
     loc= new PVector (x, y);
     vel= new PVector(-1, 0);
-    locBullet= new PVector (x, y);
-    velBullet= new PVector(-2, 0);
+    locbullet= new PVector (x, y);
+    velbullet= new PVector(-2, 0);
     bullet= loadImage("bullet.png");
-    Enemy1= loadImage("Enemy1.png");
-    Enemy2= loadImage("Enemy2.png"); 
-    Enemy3= loadImage("Enemy3.png");
-    Enemy4= loadImage("Enemy4.png");
-    EnemyDead= loadImage("deadrobot.png");
+    enemy1= loadImage("Enemy1.png");
+    enemy2= loadImage("Enemy2.png"); 
+    enemy3= loadImage("Enemy3.png");
+    enemy4= loadImage("Enemy4.png");
+    enemyDead= loadImage("deadrobot.png");
     imagerunning=1;
-    d=50;
+    sz=50;
     bullsz=35;
     time=1;
     Life=3;
@@ -40,16 +40,16 @@ class Enemy {
 ///////////////////////////////////////////////////
     time +=1;
     if (time>0 && time<11) {
-      image(Enemy1, loc.x, loc.y);
+      image(enemy1, loc.x, loc.y);
     }
     if (time>10 && time<21) {
-      image(Enemy2, loc.x, loc.y);
+      image(enemy2, loc.x, loc.y);
     }
     if (time>20 && time<31) {
-      image(Enemy3, loc.x, loc.y);
+      image(enemy3, loc.x, loc.y);
     }
     if (time>30 && time<41) {
-      image(Enemy4, loc.x, loc.y);
+      image(enemy4, loc.x, loc.y);
     }
     if (time>40) {
       time = 1;
@@ -64,11 +64,11 @@ class Enemy {
 //         Enemies shoot F-bombs                 //
 //                                               //
 ///////////////////////////////////////////////////
-    image(bullet, locBullet.x-50, locBullet.y, bullsz, bullsz); 
-    locBullet.add(velBullet);
-    if (locBullet.x<0) {
-      locBullet.x=loc.x;
-      velBullet.x=-2;
+    image(bullet, locbullet.x-50, locbullet.y, bullsz, bullsz); 
+    locbullet.add(velbullet);
+    if (locbullet.x<0) {
+      locbullet.x=loc.x;
+      velbullet.x=-2;
     }
   }
 
@@ -78,7 +78,7 @@ class Enemy {
 //          Enemy dies when hit                  //
 //                                               //
 ///////////////////////////////////////////////////
-    if (locBullet.dist(c.loc)<d/2) {
+    if (locbullet.dist(c.loc)<sz/2) {
       return true;
     } else {
       return false;
@@ -90,7 +90,7 @@ class Enemy {
 //               Enemy is dead                   //
 //                                               //
 ///////////////////////////////////////////////////
-    image(EnemyDead, loc.x, loc.y+20);
+    image(enemyDead, loc.x, loc.y+20);
   }
 
   void checkForCharacter(character c) {

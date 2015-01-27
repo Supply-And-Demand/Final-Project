@@ -4,7 +4,6 @@
 //                                               //
 ///////////////////////////////////////////////////
 
-
 ArrayList<character> weaps= new ArrayList<character>();
 ArrayList<boss> fbombs= new ArrayList<boss>();
 Enemy [] enemyArray= new Enemy [3];
@@ -206,8 +205,8 @@ void draw() {
         enemyArray[i].checkForCharacter(c); 
         if (enemyArray[i].hit()) { //if an enemy's bomb hits the character, character's life depletes by one and the bomb resets 
           charlife=charlife-1;
-          enemyArray[i].locBullet.x=enemyArray[i].loc.x+50;
-          enemyArray[i].velBullet.x=-2;
+          enemyArray[i].locbullet.x=enemyArray[i].loc.x+50;
+          enemyArray[i].velbullet.x=-2;
         }
       }
     }
