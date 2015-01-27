@@ -32,7 +32,7 @@ void setup() {
   market = new Market();
   space = false;
   ammo=1;
-  bossLife= 50;
+  bossLife= 30;
   game=0;
   sidekick = 0;
   weospeed = 3;
@@ -73,8 +73,8 @@ void draw() {
     }
   }
   if (game>0 && game<3) {
-    if (sidekick == 2){
-    ammo=2;
+    if (sidekick == 2) {
+      ammo=2;
     }
     if (shirt == 1) {
       ammo = 5;
@@ -193,12 +193,7 @@ void draw() {
     }
 
     if (charLife==0) {
-      image(failed, 0, 0, width, height);
-      fill(0);
-      textSize(30);
-      text("You have failed your classes, please close and", width/3.6, height/2) ;
-      text("reopen if you would like to try again", width/3.2, height/1.8) ;
-      noLoop();
+      game = 10;
     }
     if (space == true) {
       if (mouseX>=337 && mouseX<=380 && mouseY>=116 && mouseY<=159 && coins > 9) {
@@ -313,12 +308,7 @@ void draw() {
       image(heart, 0, 10, 50, 50);
     }
     if (charLife==0) {
-      image(failed, 0, 0, width, height);
-      fill(0);
-      textSize(30);
-      text("You have failed your classes, please close and", width/3.6, height/2) ;
-      text("reopen if you would like to try again", width/3.2, height/1.8) ;
-      noLoop();
+      game = 10;
     }
     for (int i=weaps.size ()-1; i>=0; i--) {
       character c= weaps.get(i);
@@ -339,7 +329,28 @@ void draw() {
       }
     }
   }
+  if (game == 10) {
+    image(failed, 0, 0, width, height);
+    fill(0);
+    textSize(30);
+    text("You have failed your classes, please press", width/3.6, height/2) ;
+    text("R if you would like to try again", width/3.2, height/1.8) ;
+    if (keyPressed == true) {
+      if (key == 'r') {
+        charLife = 5;  
+        ammo=1;
+        bossLife= 30;
+        sidekick = 0;
+        shirt = 0;
+        level=1;
+        coins = 0;
+        weospeed = 3;
+        game = 0;
+      }
+    }
+  }
 }
+
 void mouseClicked() {
   if (game == 0) {
     game = 5;
