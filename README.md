@@ -21,4 +21,4 @@ http://www.vgmpf.com/Wiki/images/e/e1/Mega_Man_2_-_NES_-_Stage_Select.png
 Song was editted through audacity, but the orginal copy can be found here:
 https://www.youtube.com/watch?v=UG-8l9t2BOM
 
-Failed background was a direct screenshot of Mr. Kevin Ferreira's powerschool. We tahnk him for his generous contribution to this project.
+Failed background was a direct screenshot of Mr. Kevin Ferreira's powerschool. We thank him for his generous contribution to this project.
