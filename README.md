@@ -5,7 +5,7 @@ Bill, Bullet,Shark, Button, Heart, LifeCounter, PencilLeft/Right, platform, and 
 Boss was created with a reference (robot in the middle) to, with some slight modifications on the textures: 
 http://vignette2.wikia.nocookie.net/megaman/images/2/29/GIGA_sprites.png/revision/latest?cb=20100816164602
 
-All of MegaKev's and MegaKev's sprites were originally created but used a template of megaman which can be fine here:
+All of MegaKev's and MegaKev's sprites were originally created but used a template of megaman which can be found here:
 https://the3040experiment.files.wordpress.com/2013/04/8bitmm.gif
 
 All of the enemy's images were edited from the original image which could be found:
