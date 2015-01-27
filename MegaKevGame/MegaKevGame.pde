@@ -153,14 +153,14 @@ void draw() {
 
       if (enemyArray[i].Life<1) {
         enemyArray[i].dead();
-        enemyArray[i].bsz=0;
+        enemyArray[i].bullsz=0;
       } else {
         enemyArray[i].display();
         enemyArray[i].move();
         enemyArray[i].checkForCharacter(c);
         if (enemyArray[i].hit()) {
           charLife=charLife-1;
-          enemyArray[i].locBullet.x=enemyArray[i].loc.x;
+          enemyArray[i].locBullet.x=enemyArray[i].loc.x+50;//balance offset in beginning
           enemyArray[i].velBullet.x=-2;
         }
       }
@@ -345,6 +345,9 @@ void draw() {
         level=1;
         coins = 0;
         weospeed = 3;
+         for (int i = 0; i <enemyArray.length; i++) {
+    enemyArray[i]  = new Enemy(random(width/2, width), height-60);
+  }
         game = 0;
       }
     }

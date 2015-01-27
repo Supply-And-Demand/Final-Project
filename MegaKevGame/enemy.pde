@@ -1,8 +1,7 @@
 class Enemy {
   PVector loc, locBullet, vel, velBullet;
-  float d, t, bsz;
+  float d, t, bullsz, imagerunning;
   PImage bullet, Enemy1, Enemy2, Enemy3, Enemy4, EnemyDead;
-  float imagerunning;
   int Life;
 
   Enemy(float x, float y) {
@@ -18,7 +17,7 @@ class Enemy {
     EnemyDead= loadImage("deadrobot.png");
     imagerunning=1;
     d=50;
-    bsz=35;
+    bullsz=35;
     t=1;
     Life=3;
   }
@@ -45,7 +44,7 @@ class Enemy {
     loc.add(vel);
   }
   void attack() {
-    image(bullet, locBullet.x-100, locBullet.y, bsz, bsz); 
+    image(bullet, locBullet.x-50, locBullet.y, bullsz, bullsz); 
     locBullet.add(velBullet);
     if (locBullet.x<0) {
       locBullet.x=loc.x;
