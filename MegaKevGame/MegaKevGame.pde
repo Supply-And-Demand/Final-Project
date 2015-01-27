@@ -109,8 +109,7 @@ void draw() {
       c.loc.x=0;
       p.loc.x= random(50, (width/2)-p.w); 
       //      p2.loc.x= random(width/2, width-p2.w);
-      p2.loc.x=p.loc.x+random(300, 500);//000000
-      p2.loc.y=p.loc.y+random(0, 5);
+      p2.loc.x=random(width/2+p.w, width-p.w);//000000
       level= level+1;
       for (int i = 0; i <enemyArray.length; i++) {
         enemyArray[i]  = new Enemy(random(width/2, width), height-60);
