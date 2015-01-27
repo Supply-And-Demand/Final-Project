@@ -133,11 +133,11 @@ void draw() {
     if (c.loc.x>width/2) { //character detects platform 2 on the right half
       c.platform2Check();
     }
-    if (c.pass()) {
-      c.loc.x=0;
-      p.loc.x= random(50, (width/2)-p.w); 
+    if (c.pass()) { //if the character goes all the way to the right edge, he will start a new level
+      c.loc.x=0; //spawns him back to the left
+      p.loc.x= random(50, (width/2)-p.w); // spawns random platform locations
       p2.loc.x=random(width/2+p.w, width-p.w);
-      level= level+1;
+      level= level+1;// indicates another level
       for (int i = 0; i <enemyArray.length; i++) {
         enemyArray[i]  = new Enemy(random(width/2, width), height-60);
       }
@@ -149,17 +149,17 @@ void draw() {
 ///////////////////////////////////////////////////   
     if (keyPressed == true) {
       if (space == false) {    
-        if (key == 'm') {
+        if (key == 'm') { // m opens the market
           space = true;
         }
       }
-      if (key == 'n') {
+      if (key == 'n') {// n closes the market
         space = false;
       }
     }
 
     if (space == true) {
-      market.display();
+      market.display(); // if m is pressed, market opens
       market.shop();
     }
 ///////////////////////////////////////////////////
@@ -246,44 +246,49 @@ void draw() {
     if (charLife==0) {
       game = 10; //you died
     }
+///////////////////////////////////////////////////
+//                                               //
+//             Market item transactions          //
+//                                               //
+///////////////////////////////////////////////////  
     if (space == true) {
-      if (mouseX>=337 && mouseX<=380 && mouseY>=116 && mouseY<=159 && coins > 9) {
+      if (mouseX>=337 && mouseX<=380 && mouseY>=116 && mouseY<=159 && coins > 9) {//Bill Clinton is selected and costs 10 coins
         if (mousePressed == true) {
           sidekick = 1; 
           coins-= 10;
         }
       }
-      if (mouseX>=337 && mouseX<=380 && mouseY>=159 && mouseY<=202 && coins > 9) {
+      if (mouseX>=337 && mouseX<=380 && mouseY>=159 && mouseY<=202 && coins > 9) {// Easy Button is selected and costs 10 coins
         if (mousePressed == true) {
           sidekick = 2; 
           coins-= 10;
         }
       }
-      if (mouseX>=337 && mouseX<=380 && mouseY>=203 && mouseY<=246 && coins > 9) {
+      if (mouseX>=337 && mouseX<=380 && mouseY>=203 && mouseY<=246 && coins > 9) {//Shark is selected and costs 10 coins
         if (mousePressed == true) {
           sidekick = 3; 
           coins-= 10;
         }
       }
-      if (mouseX>=337 && mouseX<=380 && mouseY>=247 && mouseY<=290 && coins > 14) {
+      if (mouseX>=337 && mouseX<=380 && mouseY>=247 && mouseY<=290 && coins > 14) {// Weapon speed upgrade is selected, adds more speed to pencil, and costs 15 coins
         if (mousePressed == true) {
           wspeed += 3;
           coins -= 15;
         }
       }
-      if (mouseX>=645 && mouseX<=688 && mouseY>=157 && mouseY<=200 && coins > 4 && charLife < 5) {
+      if (mouseX>=645 && mouseX<=688 && mouseY>=157 && mouseY<=200 && coins > 4 && charLife < 5) {// Health selected and adds one heart to character and costs 5 coins
         if (mousePressed == true) {
           charLife += 1; 
           coins-= 5;
         }
       }
-      if (mouseX>=645 && mouseX<=688 && mouseY>=114 && mouseY<=157  && coins > 14 && charLife < 5) {
+      if (mouseX>=645 && mouseX<=688 && mouseY>=114 && mouseY<=157  && coins > 14 && charLife < 5) {// Hearts selected restores all 5 hearts and costs 15 coins
         if (mousePressed == true) {
           charLife = 5; 
           coins-= 15;
         }
       }
-      if (mouseX>=645 && mouseX<=688 && mouseY>=202 && mouseY<=245  && coins > 99) {
+      if (mouseX>=645 && mouseX<=688 && mouseY>=202 && mouseY<=245  && coins > 99) { //Blue Shirt is selected and costs 100 coins 
         if (mousePressed == true) {
           shirt = 1;
           coins-= 100;
@@ -303,22 +308,22 @@ void draw() {
     textSize(24);
     text(coins, 112, 101);
     if (fbombs.size() <maxBombs) {
-      fbombs.add(new boss (700, 400));
+      fbombs.add(new boss (700, 400)); //bomb particles spawn from this point
     }
-    if (bossLife>0) {
+    if (bossLife>0) { //if boss has life, his picture displays
       b.display();
     }
     for (int i=fbombs.size ()-1; i>=0; i--) {
       boss f = fbombs.get(i);
-      if (bossLife>0) {
+      if (bossLife>0) {// if boss has life, bomb particles display and move
 
         f.BulletMove();
         f.BulletDisplay();
-        if (f.hit()) {
+        if (f.hit()) { // if bomb particle hits character, character loses a life
           charLife--;
         }
       }
-      if (bossLife<1) {
+      if (bossLife<1) { // if boss is dead, user wins
         textSize(80);
         text("YOU WIN", width/2-120, height/2);
       }
@@ -329,10 +334,10 @@ void draw() {
     c.sidekick(sidekick);
     c.enemyCheck();
 
-    if (c.loc.x > 550) {
+    if (c.loc.x > 550) { //character can not move past the boss
       c.loc.x=550;
     }
-    if (c.loc.x < 0) {
+    if (c.loc.x < 0) { // character can not go off the screen on the left
       c.loc.x=0;
     }
 ///////////////////////////////////////////////////
@@ -370,21 +375,26 @@ void draw() {
     if (charLife==0) {
       game = 10; //you died
     }
+///////////////////////////////////////////////////
+//                                               //
+//     Character shooting pencils (weapons)      //
+//             (again for BOSS)                  //
+/////////////////////////////////////////////////// 
     for (int i=weaps.size ()-1; i>=0; i--) {
-      character c= weaps.get(i);
+      character c= weaps.get(i); // the pencil displays and moves
       c.weapDisplay();
       c.weapMove();
 
-      if (c.edge(800)) {
+      if (c.edge(800)) {// if the character's pencil hits the edge, it removes
         weaps.remove(i);
       }
-      if (c.shootBoss()) {
+      if (c.shootBoss()) { // if the character's pencil hits the boss, he loses a life and fades
         weaps.remove(i);
         fill(0, 120);
         rect(600, 200, 600, 500);
         bossLife -= 1;
       }
-      if (bossLife==0) {
+      if (bossLife==0) { //if the boss has no life, user gets 1000 coins
         coins+=1000;
       }
     }
@@ -401,7 +411,7 @@ void draw() {
     text("You have failed your classes, please press", width/3.6, height/2) ;
     text("R if you would like to try again", width/3.2, height/1.8) ;
     if (keyPressed == true) {
-      if (key == 'r') {
+      if (key == 'r') {// restart the game and resets prev games data
         charLife = 5;  
         ammo=1;
         bossLife= 30;
