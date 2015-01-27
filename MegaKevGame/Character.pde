@@ -191,7 +191,7 @@ class character {
   }
 
   boolean shootBoss() {//detects shot
-    if (locWeapon.dist(b.loc)<sz/2) {
+    if (locWeapon.x > 550) {
       return true;
     } else {
       return false;

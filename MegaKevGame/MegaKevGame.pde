@@ -41,7 +41,7 @@ void setup() {
   weospeed = 3;
   shirt = 0;
   level=1;
-  maxBombs= 40;
+  maxBombs= 10;
   coins = 0;
   for (int i = 0; i <enemyArray.length; i++) {
     enemyArray[i]  = new Enemy(random(width/2, width), height-60);
@@ -276,96 +276,38 @@ void draw() {
     fill(255, 0, 0);
     textSize(24);
     text(coins, 112, 101);
-    text("Level:" + level, width-100, 50);
     if (fbombs.size() <maxBombs) {
       fbombs.add(new boss (700, 400));
     }
 
     for (int i=fbombs.size ()-1; i>=0; i--) {//redraws the particles 
       boss f = fbombs.get(i);
-      if (bossLife==50) {
+      if (bossLife>0) {
+        b.display();
         f.BulletMove();
         f.BulletDisplay();
         if (f.hit()) {
           charLife--;
         }
       }
-      //      f.BulletMove();
-      //      f.BulletDisplay();
-      //          if (f.hit()) {
-      //      charLife=charLife-1;
-      //    }
+      if(bossLife<1){
+        textSize(80);
+        text("YOU WIN", width/2-120, height/2);
+    }
     }
     player.play();
-    b.display();
     c.display(shirt);
     c.move();
     c.sidekick(sidekick);
     c.enemyCheck();
+    
     if (c.loc.x > 550) {
       c.loc.x=550;
     }
-
-    /////enemy shoot/////
-
-
-
-
-
-    ////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////MARKET BELOW CAUTION/////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////
-    if (space == true) {
-      if (mouseX>=337 && mouseX<=380 && mouseY>=116 && mouseY<=159 && coins > 9) {
-        if (mousePressed == true) {
-          sidekick = 1; 
-          coins-= 10;
-        }
-      }
-      if (mouseX>=337 && mouseX<=380 && mouseY>=159 && mouseY<=202 && coins > 9) {
-        if (mousePressed == true) {
-          sidekick = 2; 
-          coins-= 10;
-        }
-      }
-      if (mouseX>=337 && mouseX<=380 && mouseY>=203 && mouseY<=246 && coins > 9) {
-        if (mousePressed == true) {
-          sidekick = 3; 
-          coins-= 10;
-        }
-      }
-      if (mouseX>=337 && mouseX<=380 && mouseY>=247 && mouseY<=290 && coins > 14) {
-        if (mousePressed == true) {
-          weospeed += 3;
-          coins -= 15;
-        }
-      }
-      if (mouseX>=645 && mouseX<=688 && mouseY>=157 && mouseY<=200 && coins > 4 && charLife < 5) {
-        if (mousePressed == true) {
-          charLife += 1; 
-          coins-= 5;
-        }
-      }
-      if (mouseX>=645 && mouseX<=688 && mouseY>=114 && mouseY<=157  && coins > 14 && charLife < 5) {
-        if (mousePressed == true) {
-          charLife = 5; 
-          coins-= 15;
-        }
-      }
-      if (mouseX>=645 && mouseX<=688 && mouseY>=202 && mouseY<=245  && coins > 99) {
-        if (mousePressed == true) {
-          shirt = 1;
-          coins-= 100;
-        }
-      }
+    if (c.loc.x < 0) {
+      c.loc.x=0;
     }
-    ////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////MARKET UPWARD CAUTION////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////
-
-    ///////////////////////////////////////////////////////////
-    ////////////////character life////////////////////
+    
     if (charLife==5) {
       image(heart, 0, 10, 50, 50);
       image(heart, 50, 10, 50, 50);
@@ -413,7 +355,7 @@ void draw() {
       }
       if (c.shootBoss()) {
         weaps.remove(i);
-        bossLife--;
+        bossLife -= 1;
       }
       if (bossLife==0) {
         coins+=1000;
