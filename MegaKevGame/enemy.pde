@@ -45,7 +45,7 @@ class Enemy {
     loc.add(vel);
   }
   void attack() {
-    image(bullet, locBullet.x, locBullet.y, bsz, bsz); 
+    image(bullet, locBullet.x-100, locBullet.y, bsz, bsz); 
     locBullet.add(velBullet);
     if (locBullet.x<0) {
       locBullet.x=loc.x;
