@@ -1,6 +1,6 @@
 # Final-Project
 
-Bill, Bullet,Shark, Button, Heart, LifeCounter, PencilLeft/Right, platform, and pointsystem were Original Content.
+Bill, Bullet,Shark, Button, Heart, LifeCounter, PencilLeft/Right, platform, and point system were Original Content.
 
 Boss was created with a reference (robot in the middle) to, with some slight modifications on the textures: 
 http://vignette2.wikia.nocookie.net/megaman/images/2/29/GIGA_sprites.png/revision/latest?cb=20100816164602
