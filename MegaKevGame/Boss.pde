@@ -4,8 +4,8 @@ class boss {
 //         Declaring variables                   //
 //                                               //
 ///////////////////////////////////////////////////
-  PImage boss, bullet;
-  PVector loc, vel, locBullet, velBullet;
+  PImage boss, bomb;
+  PVector loc, vel, locbomb, velbomb;
   int d;
 
   boss(float x, float y) {
@@ -15,10 +15,10 @@ class boss {
 //                                               //
 ///////////////////////////////////////////////////
     boss=loadImage("Boss.png");
-    bullet= loadImage("bullet.png");
+    bomb= loadImage("bullet.png");
     loc= new PVector(x, y);
-    locBullet= new PVector (x, y);
-    velBullet= new PVector(random(-4, -3), random(0,4));
+    locbomb= new PVector (x, y);
+    velbomb= new PVector(random(-4, -3), random(0,4));
     d=50;
   }
 
@@ -26,28 +26,28 @@ class boss {
     image(boss, 600, 200, 600, 500);
   }
 
-  void BulletMove() {
+  void bombMove() {
 ///////////////////////////////////////////////////
 //                                               //
 //         Boss weapon discharging               //
 //                                               //
 ///////////////////////////////////////////////////
-    locBullet.add(velBullet);
-    if (locBullet.x<0||locBullet.x>width||locBullet.y+35/2>height|| locBullet.y<0) {
+    locbomb.add(velbomb);
+    if (locbomb.x<0||locbomb.x>width||locbomb.y+35/2>height|| locbomb.y<0) {
       println("yes");
-      locBullet.x=random(600,800);
-      locBullet.y= random(400,600);
+      locbomb.x=random(600,800);
+      locbomb.y= random(400,600);
     }
   }
-  void BulletDisplay() {
+  void bombDisplay() {
 ///////////////////////////////////////////////////
 //                                               //
 //         Shows enemy projectiles               //
 //                                               //
 ///////////////////////////////////////////////////
 
-    image(bullet, locBullet.x, locBullet.y, d-15, d-15); 
-    locBullet.add(velBullet);
+    image(bomb, locbomb.x, locbomb.y, d-15, d-15); 
+    locbomb.add(velbomb);
   }
   boolean hit() {
 ///////////////////////////////////////////////////
@@ -55,10 +55,10 @@ class boss {
 //                detects bullet                 //
 //                                               //
 ///////////////////////////////////////////////////
-    if (locBullet.dist(c.loc)<d/2){
+    if (locbomb.dist(c.loc)<d/2){
       println("no");
-      locBullet.x=700;
-      locBullet.y= 400;
+      locbomb.x=700;
+      locbomb.y= 400;
       return true;
     } else {
       return false;

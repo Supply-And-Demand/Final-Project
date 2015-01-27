@@ -9,7 +9,7 @@ ArrayList<character> weaps= new ArrayList<character>();
 ArrayList<boss> fbombs= new ArrayList<boss>();
 Enemy [] enemyArray= new Enemy [3];
 boolean space;
-int charLife, ammo, bossLife, game, coins, sidekick, wspeed, shirt, level, maxBombs, velbullet;
+int charlife, ammo, bosslife, game, coins, sidekick, wspeed, shirt, level, maxbombs, velpencil;
 PImage heart, failed, title, points, menu;
 import ddf.minim.*;
 AudioPlayer player;
@@ -29,7 +29,7 @@ void setup() {
 ///////////////////////////////////////////////////
   
   size(1200, 700);
-  charLife=5;
+  charlife=5;
   failed= loadImage("failedbackground.png");
   heart= loadImage("Heart.png");
   title= loadImage("TitleScreen.png");
@@ -45,15 +45,15 @@ void setup() {
   market = new Market();
   space = false;
   ammo=1;
-  bossLife= 30;
+  bosslife= 30;
   game=0;
   sidekick = 0;
   wspeed = 3;
   shirt = 0;
   level=1;
-  maxBombs= 10;
+  maxbombs= 10;
   coins = 0;
-  velbullet= 200;
+  velpencil= 200;
   for (int i = 0; i <enemyArray.length; i++) {
     enemyArray[i]  = new Enemy(random(width/2, width), height-60);
   }
@@ -103,7 +103,7 @@ void draw() {
     }
     if (shirt == 1) { // class shirt item has benefits of more speed on attack and more ammo
       ammo = 5;
-      velbullet = 400;
+      velpencil = 400;
     }
     player.play(); //music
     background(0, 10, 30);
@@ -172,7 +172,7 @@ void draw() {
       c.weapDisplay();
       c.weapMove();
 
-      if (c.edge(velbullet)) { //if the pencil hits the left or right of screen, it is removed and added back into ammo
+      if (c.edge(velpencil)) { //if the pencil hits the left or right of screen, it is removed and added back into ammo
         weaps.remove(i);
       }
 
@@ -205,7 +205,7 @@ void draw() {
         enemyArray[i].move();
         enemyArray[i].checkForCharacter(c); 
         if (enemyArray[i].hit()) { //if an enemy's bomb hits the character, character's life depletes by one and the bomb resets 
-          charLife=charLife-1;
+          charlife=charlife-1;
           enemyArray[i].locBullet.x=enemyArray[i].loc.x+50;
           enemyArray[i].velBullet.x=-2;
         }
@@ -216,34 +216,34 @@ void draw() {
 //       Character health (hearts) display       //
 //                                               //
 ///////////////////////////////////////////////////   
-    if (charLife==5) {
+    if (charlife==5) {
       image(heart, 0, 10, 50, 50);
       image(heart, 50, 10, 50, 50);
       image(heart, 100, 10, 50, 50);
       image(heart, 150, 10, 50, 50);
       image(heart, 200, 10, 50, 50);
     }  
-    if (charLife==4) {
+    if (charlife==4) {
 
       image(heart, 0, 10, 50, 50);
       image(heart, 50, 10, 50, 50);
       image(heart, 100, 10, 50, 50);
       image(heart, 150, 10, 50, 50);
     }  
-    if (charLife==3) {
+    if (charlife==3) {
       image(heart, 0, 10, 50, 50);
       image(heart, 50, 10, 50, 50);
       image(heart, 100, 10, 50, 50);
     }  
-    if (charLife==2) {
+    if (charlife==2) {
       image(heart, 0, 10, 50, 50);
       image(heart, 50, 10, 50, 50);
     }
-    if (charLife==1) {
+    if (charlife==1) {
       image(heart, 0, 10, 50, 50);
     }
 
-    if (charLife==0) {
+    if (charlife==0) {
       game = 10; //you died
     }
 ///////////////////////////////////////////////////
@@ -276,15 +276,15 @@ void draw() {
           coins -= 15;
         }
       }
-      if (mouseX>=645 && mouseX<=688 && mouseY>=157 && mouseY<=200 && coins > 4 && charLife < 5) {// Health selected and adds one heart to character and costs 5 coins
+      if (mouseX>=645 && mouseX<=688 && mouseY>=157 && mouseY<=200 && coins > 4 && charlife < 5) {// Health selected and adds one heart to character and costs 5 coins
         if (mousePressed == true) {
-          charLife += 1; 
+          charlife += 1; 
           coins-= 5;
         }
       }
-      if (mouseX>=645 && mouseX<=688 && mouseY>=114 && mouseY<=157  && coins > 14 && charLife < 5) {// Hearts selected restores all 5 hearts and costs 15 coins
+      if (mouseX>=645 && mouseX<=688 && mouseY>=114 && mouseY<=157  && coins > 14 && charlife < 5) {// Hearts selected restores all 5 hearts and costs 15 coins
         if (mousePressed == true) {
-          charLife = 5; 
+          charlife = 5; 
           coins-= 15;
         }
       }
@@ -307,23 +307,23 @@ void draw() {
     fill(255, 0, 0);
     textSize(24);
     text(coins, 112, 101);
-    if (fbombs.size() <maxBombs) {
+    if (fbombs.size() <maxbombs) {
       fbombs.add(new boss (700, 400)); //bomb particles spawn from this point
     }
-    if (bossLife>0) { //if boss has life, his picture displays
+    if (bosslife>0) { //if boss has life, his picture displays
       b.display();
     }
     for (int i=fbombs.size ()-1; i>=0; i--) {
       boss f = fbombs.get(i);
-      if (bossLife>0) {// if boss has life, bomb particles display and move
+      if (bosslife>0) {// if boss has life, bomb particles display and move
 
-        f.BulletMove();
-        f.BulletDisplay();
+        f.bombMove();
+        f.bombDisplay();
         if (f.hit()) { // if bomb particle hits character, character loses a life
-          charLife--;
+          charlife--;
         }
       }
-      if (bossLife<1) { // if boss is dead, user wins
+      if (bosslife<1) { // if boss is dead, user wins
         textSize(80);
         text("YOU WIN", width/2-120, height/2);
       }
@@ -346,33 +346,33 @@ void draw() {
 //                                               //
 ///////////////////////////////////////////////////   
 
-    if (charLife==5) {
+    if (charlife==5) {
       image(heart, 0, 10, 50, 50);
       image(heart, 50, 10, 50, 50);
       image(heart, 100, 10, 50, 50);
       image(heart, 150, 10, 50, 50);
       image(heart, 200, 10, 50, 50);
     }  
-    if (charLife==4) {
+    if (charlife==4) {
 
       image(heart, 0, 10, 50, 50);
       image(heart, 50, 10, 50, 50);
       image(heart, 100, 10, 50, 50);
       image(heart, 150, 10, 50, 50);
     }  
-    if (charLife==3) {
+    if (charlife==3) {
       image(heart, 0, 10, 50, 50);
       image(heart, 50, 10, 50, 50);
       image(heart, 100, 10, 50, 50);
     }  
-    if (charLife==2) {
+    if (charlife==2) {
       image(heart, 0, 10, 50, 50);
       image(heart, 50, 10, 50, 50);
     }
-    if (charLife==1) {
+    if (charlife==1) {
       image(heart, 0, 10, 50, 50);
     }
-    if (charLife==0) {
+    if (charlife==0) {
       game = 10; //you died
     }
 ///////////////////////////////////////////////////
@@ -392,9 +392,9 @@ void draw() {
         weaps.remove(i);
         fill(0, 120);
         rect(600, 200, 600, 500);
-        bossLife -= 1;
+        bosslife -= 1;
       }
-      if (bossLife==0) { //if the boss has no life, user gets 1000 coins
+      if (bosslife==0) { //if the boss has no life, user gets 1000 coins
         coins+=1000;
       }
     }
@@ -412,9 +412,9 @@ void draw() {
     text("R if you would like to try again", width/3.2, height/1.8) ;
     if (keyPressed == true) {
       if (key == 'r') {// restart the game and resets prev games data
-        charLife = 5;  
+        charlife = 5;  
         ammo=1;
-        bossLife= 30;
+        bosslife= 30;
         sidekick = 0;
         shirt = 0;
         level=1;
