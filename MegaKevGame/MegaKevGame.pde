@@ -65,7 +65,7 @@ void draw() {
     image(menu, 0, 0, 1200, 700);
 ///////////////////////////////////////////////////
 //                                               //
-//         level seletion parameter              //
+//         level seletion parameters             //
 //                                               //
 ///////////////////////////////////////////////////
     if (mouseX > 118 && mouseX < 368 && mouseY >75 && mouseY <325) { // casual mode selection
@@ -115,16 +115,22 @@ void draw() {
     if (game == 2) {// if the game is plus mode, then maxed coins
       coins = 999;
     }
-    p.display(); //platform 1 appears
-    p2.display();//platform 2 appears
-    c.display(shirt);// character displays with a shirt
-    c.move(); 
+///////////////////////////////////////////////////
+//                                               //
+//         Game setup for casual and plus        //
+//                                               //
+///////////////////////////////////////////////////
+    
+    p.display(); //platform 1 and 2 appear
+    p2.display();
+    c.display(shirt);// character displays with a shirt, has a sidekick, can move, and can't go past a dead enemy unless he jumps
+    c.move(); //
     c.sidekick(sidekick);
     c.enemyCheck();
-    if (c.loc.x<width/2) {
+    if (c.loc.x<width/2) { //character detects platform 1 on the left half of screen
       c.platformCheck();
     }
-    if (c.loc.x>width/2) {
+    if (c.loc.x>width/2) { //character detects platform 2 on the right half
       c.platform2Check();
     }
     if (c.pass()) {
@@ -136,6 +142,11 @@ void draw() {
         enemyArray[i]  = new Enemy(random(width/2, width), height-60);
       }
     }
+///////////////////////////////////////////////////
+//                                               //
+//             Calling the market                //
+//                                               //
+///////////////////////////////////////////////////   
     if (keyPressed == true) {
       if (space == false) {    
         if (key == 'm') {
@@ -151,45 +162,60 @@ void draw() {
       market.display();
       market.shop();
     }
-    for (int i=weaps.size ()-1; i>=0; i--) {
+///////////////////////////////////////////////////
+//                                               //
+//     Character shooting pencils (weapons)      //
+//                                               //
+///////////////////////////////////////////////////  
+    for (int i=weaps.size ()-1; i>=0; i--) { //the pencil displays and moves
       character c= weaps.get(i);
       c.weapDisplay();
       c.weapMove();
 
-      if (c.edge(velbullet)) {
+      if (c.edge(velbullet)) { //if the pencil hits the left or right of screen, it is removed and added back into ammo
         weaps.remove(i);
       }
 
-      for (int j = 0; j < enemyArray.length; j++) {
+      for (int j = 0; j < enemyArray.length; j++) { //if the pencil hits the enemy, it is removeed and added back into ammo
         if (c.shootEnemy(j) && weaps.size() > 0) {
           weaps.remove(i);
-          enemyArray[j].Life--;
-          if (enemyArray[j].Life==0) {
-            if (sidekick==1) {
+          enemyArray[j].Life--; //the enemy's life depletes by one
+          if (enemyArray[j].Life==0) { //if the enemy hs no more life, user earns coins (extra credit)
+            if (sidekick==1) { //if Bill Clinton is equipped, user gets 5 coins benefit
               coins+=5;
-            } else { 
+            } else { //if Bill isn't equipped, user gets 2 coins
               coins+=2;
             }
           }
         }
       }
     }
+///////////////////////////////////////////////////
+//                                               //
+//               Enemy details                   //
+//                                               //
+///////////////////////////////////////////////////  
     for (int i = 0; i < enemyArray.length; i++) {
 
-      if (enemyArray[i].Life<1) {
+      if (enemyArray[i].Life<1) { //if the enemy has no life, he looks dead and can't shoot 
         enemyArray[i].dead();
         enemyArray[i].bullsz=0;
-      } else {
+      } else {                     // if the enemy has life, he will look alive, move, and shoot
         enemyArray[i].display();
         enemyArray[i].move();
-        enemyArray[i].checkForCharacter(c);
-        if (enemyArray[i].hit()) {
+        enemyArray[i].checkForCharacter(c); 
+        if (enemyArray[i].hit()) { //if an enemy's bomb hits the character, character's life depletes by one and the bomb resets 
           charLife=charLife-1;
-          enemyArray[i].locBullet.x=enemyArray[i].loc.x+50;//balance offset in beginning
+          enemyArray[i].locBullet.x=enemyArray[i].loc.x+50;
           enemyArray[i].velBullet.x=-2;
         }
       }
     }
+///////////////////////////////////////////////////
+//                                               //
+//       Character health (hearts) display       //
+//                                               //
+///////////////////////////////////////////////////   
     if (charLife==5) {
       image(heart, 0, 10, 50, 50);
       image(heart, 50, 10, 50, 50);
@@ -218,7 +244,7 @@ void draw() {
     }
 
     if (charLife==0) {
-      game = 10;
+      game = 10; //you died
     }
     if (space == true) {
       if (mouseX>=337 && mouseX<=380 && mouseY>=116 && mouseY<=159 && coins > 9) {
@@ -265,7 +291,11 @@ void draw() {
       }
     }
   } 
-
+///////////////////////////////////////////////////
+//                                               //
+//          Game setup for Boss Battle           //
+//                                               //
+///////////////////////////////////////////////////
   if (game== 3) {
     background(0, 10, 30);
     image(points, 0, 80);
@@ -305,6 +335,11 @@ void draw() {
     if (c.loc.x < 0) {
       c.loc.x=0;
     }
+///////////////////////////////////////////////////
+//                                               //
+//       Character health (hearts) display       //
+//                                               //
+///////////////////////////////////////////////////   
 
     if (charLife==5) {
       image(heart, 0, 10, 50, 50);
@@ -333,7 +368,7 @@ void draw() {
       image(heart, 0, 10, 50, 50);
     }
     if (charLife==0) {
-      game = 10;
+      game = 10; //you died
     }
     for (int i=weaps.size ()-1; i>=0; i--) {
       character c= weaps.get(i);
@@ -354,6 +389,11 @@ void draw() {
       }
     }
   }
+///////////////////////////////////////////////////
+//                                               //
+//                death screen                   //
+//                                               //
+///////////////////////////////////////////////////
   if (game == 10) {
     image(failed, 0, 0, width, height);
     fill(0);
@@ -384,25 +424,36 @@ void mouseClicked() {
     game = 5;
   }
 }
+
 void keyPressed() {
+///////////////////////////////////////////////////
+//                                               //
+//       Determining pencil orientation          //
+//                                               //
+///////////////////////////////////////////////////
   if (key=='e') {
-    if (weaps.size() <ammo) {
-      if (c.loc.y<p.loc.y-p.h/2) {
+    if (weaps.size() <ammo) { //if the user has ammo, the charcter class has the parameters for shooting RIGHT
+      if (c.loc.y<p.loc.y-p.h/2) { //pencil shoots at higher point because he's on platform
         weaps.add(new character (c.loc.x, height-100, wspeed, 50, "PencilRight"));
       } else {
         weaps.add(new character (c.loc.x, height-40, wspeed, 50, "PencilRight"));
       }
     }
   }
-  if (key=='q') {
-    if (weaps.size() <ammo) {
-      if (c.loc.y<p.loc.y-p.h/2) {
+  if (key=='q') { 
+    if (weaps.size() <ammo) { //if the user has ammo, the charcter class has the parameters for shooting LEFT
+      if (c.loc.y<p.loc.y-p.h/2) {//pencil shoots at higher point because he's on platform
         weaps.add(new character (c.loc.x, height-100, -wspeed, -50, "PencilLeft"));
       } else {
         weaps.add(new character (c.loc.x, height-40, -wspeed, -50, "PencilLeft"));
       }
     }
   }
+///////////////////////////////////////////////////
+//                                               //
+//           controling the music                //
+//                                               //
+///////////////////////////////////////////////////
   if (key == 'l') {
     player.close();
   }
