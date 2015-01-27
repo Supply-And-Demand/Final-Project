@@ -174,8 +174,8 @@ class character {
   }
 
 
-  boolean edge() {
-    if (locWeapon.x>loc.x+200||locWeapon.x<0||locWeapon.x<loc.x-200) {//200 range
+  boolean edge(float penlength) {
+    if (locWeapon.x>loc.x+penlength||locWeapon.x<0||locWeapon.x<loc.x-penlength) {//200 range
       return true;
     } else {
 

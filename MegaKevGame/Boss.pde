@@ -21,9 +21,8 @@ class boss {
     locBullet.add(velBullet);
     if (locBullet.x<0||locBullet.x>width||locBullet.y+35/2>height|| locBullet.y<0) {
       println("yes");
-      locBullet.x=700;
-      locBullet.y= 400;
-    
+      locBullet.x=random(600,800);
+      locBullet.y= random(400,600);
     }
   }
   void BulletDisplay() {//displays particles as ellipses

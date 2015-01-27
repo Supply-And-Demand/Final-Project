@@ -139,7 +139,7 @@ void draw() {
       c.weapDisplay();
       c.weapMove();
 
-      if (c.edge()) {
+      if (c.edge(200)) {
         weaps.remove(i);
       }
       //////
@@ -352,11 +352,13 @@ void draw() {
       c.weapDisplay();
       c.weapMove();
 
-      if (c.edge()) {
+      if (c.edge(800)) {
         weaps.remove(i);
       }
       if (c.shootBoss()) {
         weaps.remove(i);
+        fill(0,120);
+         rect(600,200, 600, 500);
         bossLife -= 1;
       }
       if (bossLife==0) {
