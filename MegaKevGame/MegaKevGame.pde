@@ -279,11 +279,13 @@ void draw() {
     if (fbombs.size() <maxBombs) {
       fbombs.add(new boss (700, 400));
     }
-
+    if(bossLife>0){
+  b.display();
+    }
     for (int i=fbombs.size ()-1; i>=0; i--) {//redraws the particles 
       boss f = fbombs.get(i);
       if (bossLife>0) {
-        b.display();
+      
         f.BulletMove();
         f.BulletDisplay();
         if (f.hit()) {

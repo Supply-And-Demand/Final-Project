@@ -8,7 +8,7 @@ class boss {
     bullet= loadImage("bullet.png");
     loc= new PVector(x, y);
     locBullet= new PVector (x, y);
-    velBullet= new PVector(random(-8, -5), random(2,4));
+    velBullet= new PVector(random(-4, -3), random(0,4));
 //    velBullet= new PVector(random(-5,5),0);
     d=50;
   }
