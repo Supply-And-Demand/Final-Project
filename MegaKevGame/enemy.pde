@@ -5,7 +5,7 @@ class Enemy {
 //                                               //
 ///////////////////////////////////////////////////
   PVector loc, locBullet, vel, velBullet;
-  float d, t, bullsz, imagerunning;
+  float d, time, bullsz, imagerunning;
   PImage bullet, Enemy1, Enemy2, Enemy3, Enemy4, EnemyDead;
   int Life;
 
@@ -28,7 +28,7 @@ class Enemy {
     imagerunning=1;
     d=50;
     bullsz=35;
-    t=1;
+    time=1;
     Life=3;
   }
 
@@ -38,21 +38,21 @@ class Enemy {
 //            Displays enemies                   //
 //                                               //
 ///////////////////////////////////////////////////
-    t +=1;
-    if (t>0 && t<11) {
+    time +=1;
+    if (time>0 && time<11) {
       image(Enemy1, loc.x, loc.y);
     }
-    if (t>10 && t<21) {
+    if (time>10 && time<21) {
       image(Enemy2, loc.x, loc.y);
     }
-    if (t>20 && t<31) {
+    if (time>20 && time<31) {
       image(Enemy3, loc.x, loc.y);
     }
-    if (t>30 && t<41) {
+    if (time>30 && time<41) {
       image(Enemy4, loc.x, loc.y);
     }
-    if (t>40) {
-      t = 1;
+    if (time>40) {
+      time = 1;
     }
   }
   void move() {
