@@ -1,9 +1,19 @@
 class character {
+///////////////////////////////////////////////////
+//                                               //
+//         Declaring variables                   //
+//                                               //
+///////////////////////////////////////////////////
   PVector loc, locWeapon, velWeapon, vel, acc;
   float n, xoff, xinc, sz, yoff, yinc, m, jumpStart, jumpHeight, sidekickidentity;
   boolean jumping, onplatform;
   PImage jump, right, left, stand, jump2, right2, left2, stand2, pencil, Bill, Shark, Button, heart;
   character(float  x, float y) {
+///////////////////////////////////////////////////
+//                                               //
+//       Initializing tons of variables          //
+//                                               //
+///////////////////////////////////////////////////
     loc=new PVector(x, y); 
     vel=new PVector(0, 0);
     acc=new PVector(0, 0);
@@ -56,7 +66,11 @@ class character {
     yoff=0;
     yinc=.1;
   }
-
+///////////////////////////////////////////////////
+//                                               //
+//      Changes character pic when moving        //
+//                                               //
+///////////////////////////////////////////////////
   void display(float shirt) {
     if (keyPressed) {
       if (key=='d'||key=='e') { 
@@ -85,6 +99,11 @@ class character {
         }
       }
     }
+///////////////////////////////////////////////////
+//                                               //
+//      keeps normal character pic when still    //
+//                                               //
+///////////////////////////////////////////////////
     if (!keyPressed) {
       if ( shirt == 0) {
         image(stand, loc.x, loc.y, sz-6, sz-6);
@@ -93,12 +112,21 @@ class character {
       }
     }
   } 
+///////////////////////////////////////////////////
+//                                               //
+//         Creates a cool sidekick               //
+//                                               //
+///////////////////////////////////////////////////
   void sidekick(float sidekickidentity) {
     n=map(noise(xoff), 0, 1, loc.x-45, loc.x-10);
     xoff+=.25*xinc;
     m=map(noise(yoff), 0, 1, loc.y-45, loc.y-30);
     yoff+=.25*yinc;
-
+///////////////////////////////////////////////////
+//                                               //
+//      Depending on which sidekick you buy      //
+//                                               //
+///////////////////////////////////////////////////
     if (sidekickidentity == 1) {
       image(Bill, n, m, 20, 30);
     }
@@ -110,6 +138,11 @@ class character {
     }
   }
   void move() {
+///////////////////////////////////////////////////
+//                                               //
+//         Character can move and jump!          //
+//                                               //
+///////////////////////////////////////////////////
     vel.add(acc);
     loc.add(vel);
     if (jumping && loc.y + sz > height) {
@@ -143,6 +176,11 @@ class character {
       }
     }
   }
+///////////////////////////////////////////////////
+//                                               //
+//      Pencil Weapon is made and can be shot    //
+//                                               //
+///////////////////////////////////////////////////
   void weapDisplay() {
     image(pencil, locWeapon.x, locWeapon.y, 60, 10);
   }
@@ -156,6 +194,11 @@ class character {
      return false;
     }
   }
+///////////////////////////////////////////////////
+//                                               //
+//      Pencil can damage enemies and boss       //
+//                                               //
+///////////////////////////////////////////////////
   boolean shootEnemy(int j) {
     if (locWeapon.dist(enemyArray[j].loc)<sz/2) {
       return true;
@@ -170,6 +213,11 @@ class character {
       return false;
     }
   }
+///////////////////////////////////////////////////
+//                                               //
+//        Can't move past a dead enemy           //
+//                                               //
+///////////////////////////////////////////////////
   void enemyCheck() {
     for (int j = 0; j < enemyArray.length; j++) {
       if (loc.dist(enemyArray[j].loc)<sz/2) {
@@ -177,6 +225,11 @@ class character {
       }
     }
   }
+///////////////////////////////////////////////////
+//                                               //
+//         Detects First Platform                //
+//                                               //
+///////////////////////////////////////////////////
   void platformCheck() {
     if (loc.x < p.loc.x || loc.x > p.loc.x + (p.w)) {
       float platformHeight = p.loc.y - p.h;
@@ -212,7 +265,12 @@ class character {
       return false;
     }
   }
-  void platform2Check() {
+///////////////////////////////////////////////////
+//                                               //
+//        Detects Second Platform                //
+//                                               //
+///////////////////////////////////////////////////
+   void platform2Check() {
     if (loc.x < p2.loc.x || loc.x > p2.loc.x + (p2.w)) {  
       float platform2Height = p2.loc.y - p2.h;
       onplatform=false;
