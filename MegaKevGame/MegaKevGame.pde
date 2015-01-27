@@ -1,8 +1,15 @@
+///////////////////////////////////////////////////
+//                                               //
+//         Declaring variables                   //
+//                                               //
+///////////////////////////////////////////////////
+
+
 ArrayList<character> weaps= new ArrayList<character>();
 ArrayList<boss> fbombs= new ArrayList<boss>();
 Enemy [] enemyArray= new Enemy [3];
 boolean space;
-int charLife, ammo, bossLife, game, coins, sidekick, weospeed, shirt, level, maxBombs, velbullet;
+int charLife, ammo, bossLife, game, coins, sidekick, wspeed, shirt, level, maxBombs, velbullet;
 PImage heart, failed, title, points, menu;
 import ddf.minim.*;
 AudioPlayer player;
@@ -15,6 +22,12 @@ boss b;
 
 
 void setup() {
+///////////////////////////////////////////////////
+//                                               //
+//         Initializing variables                //
+//                                               //
+///////////////////////////////////////////////////
+  
   size(1200, 700);
   charLife=5;
   failed= loadImage("failedbackground.png");
@@ -35,7 +48,7 @@ void setup() {
   bossLife= 30;
   game=0;
   sidekick = 0;
-  weospeed = 3;
+  wspeed = 3;
   shirt = 0;
   level=1;
   maxBombs= 10;
@@ -47,24 +60,29 @@ void setup() {
 }
 
 void draw() {
-  image(title, 0, 0, 1200, 700);
-  if (game == 5) {
+  image(title, 0, 0, 1200, 700); // the title screen 
+  if (game == 5) { // if the user clicks start game, then level selector screen appears
     image(menu, 0, 0, 1200, 700);
-    if (mouseX > 118 && mouseX < 368 && mouseY >75 && mouseY <325) {
+///////////////////////////////////////////////////
+//                                               //
+//         level seletion parameter              //
+//                                               //
+///////////////////////////////////////////////////
+    if (mouseX > 118 && mouseX < 368 && mouseY >75 && mouseY <325) { // casual mode selection
       fill(0, 160);
       rect(118, 75, 260, 250);
       if (mousePressed == true) {
         game = 1;
       }
     }
-    if (mouseX > 468 && mouseX < 728 && mouseY >75 && mouseY <325) {
+    if (mouseX > 468 && mouseX < 728 && mouseY >75 && mouseY <325) { // plus mode selection
       fill(0, 160);
       rect(468, 75, 260, 250);
       if (mousePressed == true) {
         game = 2;
       }
     }
-    if (mouseX > 811 && mouseX < 1071 && mouseY >75 && mouseY <325) {
+    if (mouseX > 811 && mouseX < 1071 && mouseY >75 && mouseY <325) { // boss battle selection
       fill(0, 160);
       rect(811, 75, 260, 262);
       if (mousePressed == true) {
@@ -72,28 +90,35 @@ void draw() {
       }
     }
   }
-  if (game>0 && game<3) {
-    if (sidekick == 2) {
+  
+////////////////////////////////////////////////////
+//                                                //
+//   casual or plus mode had been selected        //
+//                                                //
+////////////////////////////////////////////////////
+    
+  if (game>0 && game<3) { 
+    if (sidekick == 2) {// button item has benefits of more ammo
       ammo=2;
     }
-    if (shirt == 1) {
+    if (shirt == 1) { // class shirt item has benefits of more speed on attack and more ammo
       ammo = 5;
       velbullet = 400;
     }
-    player.play();
+    player.play(); //music
     background(0, 10, 30);
     image(points, 0, 80);
     fill(255, 0, 0);
     textSize(24);
     text(coins, 112, 101);
     text("Level:" + level, width-100, 50);
-    if (game == 2) {
+    if (game == 2) {// if the game is plus mode, then maxed coins
       coins = 999;
     }
-    p.display();
-    p2.display();
-    c.display(shirt);
-    c.move();
+    p.display(); //platform 1 appears
+    p2.display();//platform 2 appears
+    c.display(shirt);// character displays with a shirt
+    c.move(); 
     c.sidekick(sidekick);
     c.enemyCheck();
     if (c.loc.x<width/2) {
@@ -216,7 +241,7 @@ void draw() {
       }
       if (mouseX>=337 && mouseX<=380 && mouseY>=247 && mouseY<=290 && coins > 14) {
         if (mousePressed == true) {
-          weospeed += 3;
+          wspeed += 3;
           coins -= 15;
         }
       }
@@ -344,10 +369,10 @@ void draw() {
         shirt = 0;
         level=1;
         coins = 0;
-        weospeed = 3;
-         for (int i = 0; i <enemyArray.length; i++) {
-    enemyArray[i]  = new Enemy(random(width/2, width), height-60);
-  }
+        wspeed = 3;
+        for (int i = 0; i <enemyArray.length; i++) {
+          enemyArray[i]  = new Enemy(random(width/2, width), height-60);
+        }
         game = 0;
       }
     }
@@ -363,18 +388,18 @@ void keyPressed() {
   if (key=='e') {
     if (weaps.size() <ammo) {
       if (c.loc.y<p.loc.y-p.h/2) {
-        weaps.add(new character (c.loc.x, height-100, weospeed, 50, "PencilRight"));
+        weaps.add(new character (c.loc.x, height-100, wspeed, 50, "PencilRight"));
       } else {
-        weaps.add(new character (c.loc.x, height-40, weospeed, 50, "PencilRight"));
+        weaps.add(new character (c.loc.x, height-40, wspeed, 50, "PencilRight"));
       }
     }
   }
   if (key=='q') {
     if (weaps.size() <ammo) {
       if (c.loc.y<p.loc.y-p.h/2) {
-        weaps.add(new character (c.loc.x, height-100, -weospeed, -50, "PencilLeft"));
+        weaps.add(new character (c.loc.x, height-100, -wspeed, -50, "PencilLeft"));
       } else {
-        weaps.add(new character (c.loc.x, height-40, -weospeed, -50, "PencilLeft"));
+        weaps.add(new character (c.loc.x, height-40, -wspeed, -50, "PencilLeft"));
       }
     }
   }
