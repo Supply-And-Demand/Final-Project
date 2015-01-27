@@ -170,7 +170,7 @@ class character {
   }
 
   void weapDisplay() {// diplays pencil at weapon's location
-    image(pencil, locWeapon.x, locWeapon.y, 60, 10);
+    image(pencil, locweapon.x, locweapon.y, 60, 10);
   }
   void weapMove() {// moves pencil at weapon's location by adding velocity
     locweapon.add(velweapon);

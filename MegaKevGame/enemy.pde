@@ -32,14 +32,9 @@ class Enemy {
     Life=3;
   }
 
-  void display() {
-///////////////////////////////////////////////////
-//                                               //
-//            Displays enemies                   //
-//                                               //
-///////////////////////////////////////////////////
+  void display() {//displays enemy animation
     time +=1;
-    if (time>0 && time<11) {
+    if (time>0 && time<11) { //changes pic at certain time intervals
       image(enemy1, loc.x, loc.y);
     }
     if (time>10 && time<21) {
@@ -55,15 +50,10 @@ class Enemy {
       time = 1;
     }
   }
-  void move() {
+  void move() { //enemy moves
     loc.add(vel);
   }
-  void attack() {
-///////////////////////////////////////////////////
-//                                               //
-//         Enemies shoot F-bombs                 //
-//                                               //
-///////////////////////////////////////////////////
+  void attack() {//enemy shoots and displays bombs
     image(bullet, locbullet.x-50, locbullet.y, bullsz, bullsz); 
     locbullet.add(velbullet);
     if (locbullet.x<0) {
@@ -72,33 +62,18 @@ class Enemy {
     }
   }
 
-  boolean hit() {
-///////////////////////////////////////////////////
-//                                               //
-//          Enemy dies when hit                  //
-//                                               //
-///////////////////////////////////////////////////
+  boolean hit() {//checks if enemy bomb hits character
     if (locbullet.dist(c.loc)<sz/2) {
       return true;
     } else {
       return false;
     }
   }
-  void dead() {
-///////////////////////////////////////////////////
-//                                               //
-//               Enemy is dead                   //
-//                                               //
-///////////////////////////////////////////////////
+  void dead() {//displays dead enemy pic
     image(enemyDead, loc.x, loc.y+20);
   }
 
-  void checkForCharacter(character c) {
-///////////////////////////////////////////////////
-//                                               //
-//  Enemy detects when you are near and shoots   //
-//                                               //
-///////////////////////////////////////////////////
+  void checkForCharacter(character c) {//  Enemy detects when you are near and shoots
     for (int j = 0; j <enemyArray.length; j++) {
       if (loc.dist(c.loc)<500) {
         enemyArray[j].attack();
